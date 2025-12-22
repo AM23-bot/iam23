@@ -1,17 +1,118 @@
-<section class="section" id="blog">
-        <h2 class="section-title">نواة الفكر (المدونة)</h2>
-        <div class="card-grid">
-            <div class="card" style="grid-column: 1 / -1; text-align: right;">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>د. أنس الهبه | نواة طبيب - طب أسنان وفكر - صنعاء</title>
+    <meta name="description" content="الموقع الرسمي للدكتور أنس الهبه في صنعاء. متخصص في طب الأسنان برؤية فكرية وإنسانية. استشارات طبية، مقالات فكرية، وتواصل مباشر.">
+    <meta name="keywords" content="دكتور أنس الهبه, طبيب أسنان صنعاء, نواة طبيب, أفضل طبيب أسنان في اليمن, تجميل أسنان صنعاء, أخلاقيات الطب">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #1A2B3C; --secondary: #2D5A61; --bg: #F8F9FA; --text: #333; --whatsapp: #25D366; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Tajawal', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.8; }
+        nav { background: white; padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); }
+        .lang-switch { cursor: pointer; padding: 5px 15px; border: 1px solid var(--secondary); border-radius: 20px; font-size: 0.8rem; color: var(--secondary); text-decoration: none; }
+        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 10%; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
+        .hero h1 { font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; color: var(--secondary); max-width: 800px; font-style: italic; border-right: 3px solid var(--secondary); padding-right: 15px; }
+        .section { padding: 60px 10%; }
+        .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 40px; text-align: center; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-top: 5px solid var(--secondary); }
+        .contact-box { background: var(--primary); color: white; padding: 50px 20px; border-radius: 20px; text-align: center; }
+        .social-links { margin-top: 30px; display: flex; justify-content: center; gap: 25px; }
+        .social-links a { color: white; font-size: 2rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--whatsapp); transform: translateY(-5px); }
+        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: var(--whatsapp); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 35px; box-shadow: 0 5px 20px rgba(37,211,102,0.4); z-index: 2000; text-decoration: none; }
+        footer { text-align: center; padding: 40px; background: white; border-top: 1px solid #eee; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" id="siteLogo">نواة طبيب</div>
+        <div class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</div>
+    </nav>
+
+    <header class="hero">
+        <h1 id="heroTitle">د. أنس الهبه</h1>
+        <p id="heroTagline">"الطب ليس مجرد مهنة، بل هو ممارسة فلسفية تسعى لترميم الإنسان قبل ترميم الابتسامة."</p>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2 class="section-title" id="aboutTitle">عن الطبيب والفكرة</h2>
+            <div style="text-align: justify; font-size: 1.15rem;">
+                <p id="aboutP1">أنا د. أنس الهبه، طبيب أسنان أؤمن بأن العيادة هي مختبر إنساني قبل أن تكون مركزاً علاجياً. من قلب صنعاء، انطلقت فكرة "نواة طبيب" لتكون جسراً يربط بين دقة العلوم الطبية وعمق التفكير الإنساني.</p>
+            </div>
+        </section>
+
+        <section class="section" id="blog">
+            <h2 class="section-title">نواة الفكر (المدونة)</h2>
+            <div class="card">
                 <small style="color: var(--secondary); font-weight: bold;">فلسفة طبية | 2025</small>
-                <h3 style="margin: 15px 0; font-size: 1.8rem;">أبعد من مجرد ابتسامة: نحو فلسفة جديدة لطب الأسنان</h3>
-                <p>في مهنتنا، غالباً ما يُنظر إلى السن كقطعة ميكانيكية تحتاج للإصلاح، لكن الحقيقة التي أدركتها من واقع ممارستي هي أن الفم هو مرآة الجسد، والابتسامة هي بوابة الروح...</p>
-                <br>
-                <p style="font-size: 1rem; color: #555;">إن 'نواة طبيب' ليست مجرد عيادة، بل هي دعوة لإعادة الاعتبار للبعد الإنساني في الطب؛ حيث تلتقي النزاهة العلمية بالأمانة الأخلاقية، وحيث يصبح العلاج حواراً بين عقل الطبيب وحاجة المريض، لا مجرد إجراء تقني جاف. نحن هنا لنمُد الجسور بين جودة العلم وجودة الحياة.</p>
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-                <div style="display: flex; gap: 10px;">
-                    <span style="background: #eef2f3; padding: 5px 15px; border-radius: 15px; font-size: 0.8rem;">#أخلاقيات_الطب</span>
-                    <span style="background: #eef2f3; padding: 5px 15px; border-radius: 15px; font-size: 0.8rem;">#وعي_طبي</span>
+                <h3 style="margin: 15px 0; font-size: 1.6rem;">أبعد من مجرد ابتسامة: نحو فلسفة جديدة لطب الأسنان</h3>
+                <p>في مهنتنا، غالباً ما يُنظر إلى السن كقطعة ميكانيكية تحتاج للإصلاح، لكن الحقيقة التي أدركتها من واقع ممارستي في صنعاء هي أن الفم هو مرآة الجسد، والابتسامة هي بوابة الروح. إن 'نواة طبيب' ليست مجرد عيادة، بل هي دعوة لإعادة الاعتبار للبعد الإنساني في الطب.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="contact-box">
+                <h2 id="contactTitle">تواصل فكري وطبي</h2>
+                <div class="social-links">
+                    <a href="https://wa.me/967738912775" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/wawl23?igsh=MWpiMmdyOTF1cnE5aA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:contact@anasalhiba.com" aria-label="Email"><i class="far fa-envelope"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
+
+    <a href="https://wa.me/967738912775" class="whatsapp-float" target="_blank" title="تواصل عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>© 2025 د. أنس الهبه | صنعاء - الجمهورية اليمنية</p>
+    </footer>
+
+    <script>
+        let currentLang = 'ar';
+        const content = {
+            ar: {
+                logo: "نواة طبيب", title: "د. أنس الهبه",
+                tagline: '"الطب ليس مجرد مهنة، بل هو ممارسة فلسفية تسعى لترميم الإنسان قبل ترميم الابتسامة."',
+                aboutTitle: "عن الطبيب والفكرة",
+                aboutP1: "أنا د. أنس الهبه، طبيب أسنان أؤمن بأن العيادة هي مختبر إنساني قبل أن تكون مركزاً علاجياً. من قلب صنعاء، انطلقت فكرة 'نواة طبيب' لتكون جسراً يربط بين دقة العلوم الطبية وعمق التفكير الإنساني.",
+                contactTitle: "تواصل فكري وطبي", langBtn: "English"
+            },
+            en: {
+                logo: "Doctor's Nucleus", title: "Dr. Anas Al-Hiba",
+                tagline: '"Medicine is not just a profession; it is a philosophical practice that seeks to restore the human before the smile."',
+                aboutTitle: "About the Doctor",
+                aboutP1: "I am Dr. Anas Al-Hiba, a dentist from Sana'a. 'Doctor's Nucleus' is a bridge between medical science and human depth.",
+                contactTitle: "Contact Me", langBtn: "العربية"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang;
+            document.getElementById('siteLogo').innerText = content[currentLang].logo;
+            document.getElementById('heroTitle').innerText = content[currentLang].title;
+            document.getElementById('heroTagline').innerText = content[currentLang].tagline;
+            document.getElementById('aboutTitle').innerText = content[currentLang].aboutTitle;
+            document.getElementById('aboutP1').innerText = content[currentLang].aboutP1;
+            document.getElementById('contactTitle').innerText = content[currentLang].contactTitle;
+            document.getElementById('langBtn').innerText = content[currentLang].langBtn;
+        }
+    </script>
+</body>
+</html>
