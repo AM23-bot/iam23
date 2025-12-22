@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23 | المتون</title>
+    <title>23 | الفهرس الكامل</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #F4F1EA; --primary: #1A1A1B; --accent: #A67C52; }
         [data-theme="dark"] { --bg: #121212; --primary: #E0E0E0; --accent: #D4AF37; }
-        body { margin: 0; background-color: var(--bg); font-family: 'IBM Plex Sans Arabic', sans-serif; color: var(--primary); transition: 0.5s; }
+        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; transition: 0.5s; }
+        
         header { padding: 2rem 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166,124,82,0.1); }
-        .logo { font-family: 'Amiri', serif; font-size: 2rem; text-decoration: none; color: var(--primary); font-weight: bold; }
-        .nav-links { display: flex; gap: 15px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--primary); font-size: 0.9rem; }
-        .essays-container { max-width: 700px; margin: 5rem auto; padding: 0 20px; }
-        .page-title { font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--accent); text-align: center; margin-bottom: 3rem; border-bottom: 1px solid rgba(166,124,82,0.1); padding-bottom: 10px; }
-        .essay-link { display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: var(--primary); padding: 1.5rem 0; border-bottom: 1px solid rgba(166,124,82,0.1); transition: 0.4s; }
-        .essay-link:hover { padding-right: 15px; color: var(--accent); }
-        .theme-btn { cursor: pointer; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--accent); }
+        .logo { font-family: 'Amiri', serif; font-size: 2.2rem; text-decoration: none; color: var(--primary); font-weight: bold; }
+        
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+        .content-section { max-width: 700px; margin: 4rem auto; padding: 0 20px; }
+        .section-label { font-family: 'Amiri', serif; color: var(--accent); font-size: 1.2rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(166,124,82,0.2); padding-bottom: 5px; }
+        
+        .item-link { display: flex; justify-content: space-between; padding: 1.5rem 0; text-decoration: none; color: var(--primary); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .item-link:hover { color: var(--accent); padding-right: 10px; }
     </style>
 </head>
 <body>
@@ -26,27 +30,21 @@
         <div class="nav-links">
             <a href="index.html">الجوهر</a>
             <a href="margins.html">الهوامش</a>
-            <div class="theme-btn" id="modeBtn" onclick="toggleTheme()">الوضع الليلي</div>
+            <a href="dictionary.html">القاموس</a>
         </div>
     </header>
-    <div class="essays-container">
-        <div class="page-title">مُتون فكرية</div>
-        <a href="faith-test.html" class="essay-link">
-            <div><span style="font-size:0.7rem; opacity:0.5;">ديسمبر 2025</span><h2 style="font-family:'Amiri'; margin:0; font-weight:400;">الإيمان حين يُختبر بالخذلان</h2></div>
-            <div style="opacity:0.3">←</div>
-        </a>
+
+    <div class="content-section">
+        <div class="section-label">المتون (المقالات الطويلة)</div>
+        <a href="faith-test.html" class="item-link"><span>الإيمان حين يُختبر بالخذلان</span><span>←</span></a>
+        
+        <div class="section-label" style="margin-top:4rem;">الأدوات الفكرية</div>
+        <a href="margins.html" class="item-link"><span>هوامش وشذرات يومية</span><span>←</span></a>
+        <a href="dictionary.html" class="item-link"><span>قاموس المفاهيم الخاصة</span><span>←</span></a>
     </div>
+
     <script>
-        function toggleTheme() {
-            const current = document.documentElement.getAttribute("data-theme");
-            const target = current === "dark" ? "light" : "dark";
-            document.documentElement.setAttribute("data-theme", target);
-            localStorage.setItem("theme", target);
-            document.getElementById("modeBtn").innerText = target === "dark" ? "الوضع النهاري" : "الوضع الليلي";
-        }
-        const saved = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", saved);
-        if(saved === "dark") document.getElementById("modeBtn").innerText = "الوضع النهاري";
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "light");
     </script>
 </body>
 </html>
