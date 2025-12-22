@@ -3,110 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23 | المتون</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@200;400;500&display=swap" rel="stylesheet">
+    <title>23 | الإيمان والخذلان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #F4F1EA; --primary: #1A1A1B; --accent: #A67C52; }
-        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; overflow-x: hidden; }
-
-        /* الغلاف الأول */
-        #cover {
-            height: 100vh; width: 100%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            cursor: pointer; transition: 1s ease-in-out; background: var(--bg);
-            position: fixed; top: 0; z-index: 2000;
-        }
-        #cover h1 { font-family: 'Amiri', serif; font-size: 4rem; transition: 0.5s; position: relative; }
-        #cover h1:hover { color: var(--accent); letter-spacing: 2px; }
-        #cover .hint { margin-top: 20px; font-size: 0.8rem; letter-spacing: 3px; opacity: 0.5; text-transform: uppercase; }
-
-        /* منطقة المحتوى (مخفية في البداية) */
-        #main-content { opacity: 0; transition: 2s; padding-top: 100px; display: none; }
-
-        nav { padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid rgba(0,0,0,0.05); position: fixed; width: 80%; top: 0; z-index: 1000; }
-        .logo { font-family: 'Amiri', serif; font-size: 2.2rem; text-decoration: none; color: var(--primary); font-weight: bold; }
-        
-        .content-area { max-width: 800px; margin: 5rem auto; padding: 0 20px; text-align: justify; line-height: 2.2; }
-        .quote-box { border-right: 4px solid var(--accent); padding-right: 2rem; margin: 3rem 0; font-style: italic; color: #444; font-size: 1.4rem; font-family: 'Amiri', serif; }
-        
-        h3 { font-family: 'Amiri', serif; font-size: 2rem; color: var(--accent); margin-top: 4rem; }
-        p { font-size: 1.25rem; font-weight: 300; margin-bottom: 2rem; }
-
-        .audio-control { position: fixed; bottom: 30px; left: 30px; z-index: 3000; background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-size: 0.8rem; display: none; }
-        
-        .no-select { user-select: none; -webkit-user-select: none; }
+        body { background-color: #F4F1EA; color: #1A1A1B; font-family: 'IBM Plex Sans Arabic', sans-serif; line-height: 2; padding: 5rem 15%; }
+        .back-link { text-decoration: none; color: #A67C52; font-weight: bold; }
+        h1 { font-family: 'Amiri', serif; font-size: 3.5rem; margin-top: 2rem; }
+        .content { font-size: 1.3rem; text-align: justify; margin-top: 3rem; }
     </style>
 </head>
-<body class="no-select">
-
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="cover" onclick="revealContent()">
-        <div style="font-family: 'Amiri'; font-size: 1.5rem; margin-bottom: 20px; opacity: 0.6;">23</div>
-        <h1>الإيمان حين يُختبر بالخذلان</h1>
-        <div class="hint">انقر للعبور إلى المتن</div>
+<body>
+    <a href="essays.html" class="back-link">← العودة للمتون</a>
+    <h1>الإيمان حين يُختبر بالخذلان</h1>
+    <div class="content">
+        <p>هنا تضع النص الفلسفي الذي كتبناه...</p>
     </div>
-
-    <div id="main-content">
-        <nav>
-            <a href="index.html" class="logo">23</a>
-            <div style="display: flex; gap: 20px;">
-                <a href="index.html" style="text-decoration:none; color:var(--primary)">الجوهر</a>
-                <a href="essays.html" style="text-decoration:none; color:var(--accent); font-weight:bold;">المتون</a>
-            </div>
-        </nav>
-
-        <article class="content-area">
-            <div class="quote-box">
-                "كيف نؤمن في بلدٍ يرى فيه الإنسانُ الظلمَ يومياً كطيفٍ لا يغادرُ الزوايا؟ وهل اليقينُ إلا رمادُ الاحتراقِ الأول؟"
-            </div>
-
-            <p>في هذه الجغرافيا التي أثقلتها السنين، لم يعد السؤال عن "ما هو الإيمان" ترفاً فكرياً، بل أصبح ضرورة للبقاء. إن الإيمان وسط الركام ليس طمأنينة باردة، بل هو أرقى أشكال المقاومة الصامتة.</p>
-
-            <h3>1. ولادة اليقين من رحم الانكسار</h3>
-            <p>هل يولد الإيمان قبل الانكسار أم بعده؟ الحقيقة أن الإيمان الذي يسبق الانكسار هو إيمان "الوراثة" و"العادة". أما الإيمان الحقيقي، فهو ذلك الذي ينبثق حين تتحطم كل الأوهام الأرضية، حين يُترك الإنسان وحيداً مع خذلانه.</p>
-
-            <h3>2. الإيمان كفعل تمرد</h3>
-            <p>أن ترفض أن تصبح ظالماً وأنت ترى الظلم يحيط بك، هذا هو الإيمان. إنه ليس هروباً من الواقع، بل هو "تعالٍ" عليه.</p>
-
-            <p style="text-align: center; margin-top: 5rem; font-style: italic; color: var(--accent);">— نُشر بواسطة 23 | اليمن</p>
-        </article>
-
-        <div class="audio-control" id="audioBtn" onclick="toggleAudio()">
-            <span id="audioStatus">🔊 إيقاف الموسيقى</span>
-        </div>
-    </div>
-
-    <script>
-        function revealContent() {
-            // إخفاء الغلاف وتفعيل الموسيقى
-            const cover = document.getElementById('cover');
-            const main = document.getElementById('main-content');
-            const audioBtn = document.getElementById('audioBtn');
-            const audio = document.getElementById('bgMusic');
-
-            cover.style.opacity = '0';
-            setTimeout(() => {
-                cover.style.display = 'none';
-                main.style.display = 'block';
-                audioBtn.style.display = 'flex';
-                setTimeout(() => { main.style.opacity = '1'; }, 100);
-            }, 1000);
-
-            // تشغيل الموسيقى بمجرد الدخول
-            audio.play();
-        }
-
-        function toggleAudio() {
-            var audio = document.getElementById("bgMusic");
-            var status = document.getElementById("audioStatus");
-            if (audio.paused) { audio.play(); status.innerHTML = "🔊 إيقاف الموسيقى"; } 
-            else { audio.pause(); status.innerHTML = "🔈 استحضار الجو"; }
-        }
-        
-        document.addEventListener('contextmenu', e => e.preventDefault());
-    </script>
 </body>
 </html>
