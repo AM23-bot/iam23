@@ -3,50 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>د. أنس الهبه | نواة طبيب - Dr. Anas Al-Hiba</title>
-    <meta name="description" content="الموقع الرسمي للدكتور أنس الهبه - طبيب أسنان، كاتب ومفكر طبي. رحلة تجمع بين دقة العلم وعمق الفكر.">
-    
+    <title>د. أنس الهبه | نواة طبيب</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
             --primary: #1A2B3C;
             --secondary: #2D5A61;
-            --accent: #D4AF37; /* ذهبي خافت للتميز */
             --bg: #F8F9FA;
             --text: #333;
+            --whatsapp: #25D366;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Tajawal', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; transition: all 0.3s ease; }
+        body { font-family: 'Tajawal', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
         
-        /* Navigation */
-        nav { background: white; padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); letter-spacing: 1px; }
-        .nav-links a { text-decoration: none; color: var(--text); margin: 0 15px; font-weight: 500; font-size: 0.9rem; }
-        .lang-switch { cursor: pointer; padding: 5px 15px; border: 1px solid var(--secondary); border-radius: 20px; font-size: 0.8rem; }
+        nav { background: white; padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); }
+        .lang-switch { cursor: pointer; padding: 5px 15px; border: 1px solid var(--secondary); border-radius: 20px; font-size: 0.8rem; text-decoration: none; color: var(--secondary); }
 
-        /* Hero Section */
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
-        .hero h1 { font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
+        .hero h1 { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
         .hero p { font-size: 1.2rem; color: var(--secondary); max-width: 700px; margin-bottom: 2rem; font-style: italic; }
-        .btn { padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 5px; transition: 0.3s; }
-        .btn:hover { background: var(--secondary); }
 
-        /* Blog Preview Section */
-        .section { padding: 80px 10%; }
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 2rem; color: var(--primary); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: white; padding: 25px; border-radius: 10px; border-bottom: 4px solid var(--secondary); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-10px); }
+        .section { padding: 60px 10%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border-bottom: 4px solid var(--secondary); }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav { padding: 1rem 5%; flex-direction: column; gap: 1rem; }
-        }
+        /* تواصل معي */
+        .contact-box { background: var(--primary); color: white; padding: 40px; border-radius: 15px; text-align: center; margin-top: 40px; }
+        .social-links { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
+        .social-links a { color: white; font-size: 1.5rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--whatsapp); transform: scale(1.1); }
 
-        /* Language LTR Override */
+        /* زر الواتساب العائم */
+        .whatsapp-float { position: fixed; bottom: 20px; left: 20px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 2000; text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        footer { text-align: center; padding: 30px; font-size: 0.9rem; color: #666; }
+
         [dir="ltr"] { font-family: 'Montserrat', sans-serif; }
     </style>
 </head>
@@ -54,37 +50,42 @@
 
     <nav>
         <div class="logo" id="siteLogo">نواة طبيب</div>
-        <div class="nav-links" id="navLinks">
-            <a href="#about" data-ar="عني" data-en="About">عني</a>
-            <a href="#blog" data-ar="المدونة" data-en="Blog">المدونة</a>
-            <a href="#contact" data-ar="تواصل" data-en="Contact">تواصل</a>
-        </div>
         <div class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</div>
     </nav>
 
     <section class="hero">
         <h1 id="heroTitle">د. أنس الهبه</h1>
         <p id="heroTagline">"بين دقة المشرط وعمق الفكر، تكمن نواة الشفاء.. رحلة في طب الأسنان وفلسفة الإنسان."</p>
-        <a href="#blog" class="btn" id="heroBtn">استكشف المقالات</a>
     </section>
 
-    <section class="section" id="blog">
-        <h2 class="section-title" id="blogTitle">مقالات فكرية وطبية</h2>
-        <div class="grid">
-            <div class="card">
-                <small id="cat1">فلسفة طبية</small>
-                <h3>أخلاقيات المهنة في عصر الرقمنة</h3>
-                <p>تحليل عميق للعلاقة بين الطبيب والمريض في ظل التطور التكنولوجي المتسارع...</p>
-            </div>
-            <div class="card">
-                <small id="cat2">صحة الفم</small>
-                <h3>أكثر من مجرد ابتسامة</h3>
-                <p>كيف تؤثر صحة الفم على الصحة النفسية والجسدية الشاملة للإنسان؟</p>
+    <section class="section">
+        <div class="contact-box">
+            <h2 id="contactTitle">تواصل معي مباشرة</h2>
+            <p id="contactDesc">يسعدني استقبال استفساراتكم الطبية والفكرية عبر المنصات التالية:</p>
+            <div class="social-links">
+                <a href="https://wa.me/967738912775" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/wawl23?igsh=MWpiMmdyOTF1cnE5aA==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:contact@anasalhiba.com"><i class="far fa-envelope"></i></a>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 40px; background: var(--primary); color: white;">
+    <section class="section" id="blog">
+        <h2 style="text-align:center; margin-bottom:30px;" id="blogTitle">مقالات مختارة</h2>
+        <div class="grid">
+            <div class="card">
+                <small>فلسفة طبية</small>
+                <h3>أخلاقيات المهنة</h3>
+                <p>كيف نوازن بين العلم والقيم في عيادة الأسنان؟</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/967738912775" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
         <p>© 2025 د. أنس الهبه - صنعاء، اليمن</p>
     </footer>
 
@@ -95,16 +96,18 @@
                 logo: "نواة طبيب",
                 title: "د. أنس الهبه",
                 tagline: '"بين دقة المشرط وعمق الفكر، تكمن نواة الشفاء.. رحلة في طب الأسنان وفلسفة الإنسان."',
-                btn: "استكشف المقالات",
-                blog: "مقالات فكرية وطبية",
+                contactTitle: "تواصل معي مباشرة",
+                contactDesc: "يسعدني استقبال استفساراتكم الطبية والفكرية عبر المنصات التالية:",
+                blog: "مقالات مختارة",
                 langBtn: "English"
             },
             en: {
                 logo: "Doctor's Nucleus",
                 title: "Dr. Anas Al-Hiba",
                 tagline: '"Between the precision of the scalpel and the depth of thought lies the nucleus of healing."',
-                btn: "Explore Articles",
-                blog: "Intellectual & Medical Articles",
+                contactTitle: "Contact Me Directly",
+                contactDesc: "I am happy to receive your medical and intellectual inquiries through the following platforms:",
+                blog: "Selected Articles",
                 langBtn: "العربية"
             }
         };
@@ -117,15 +120,10 @@
             document.getElementById('siteLogo').innerText = content[currentLang].logo;
             document.getElementById('heroTitle').innerText = content[currentLang].title;
             document.getElementById('heroTagline').innerText = content[currentLang].tagline;
-            document.getElementById('heroBtn').innerText = content[currentLang].btn;
+            document.getElementById('contactTitle').innerText = content[currentLang].contactTitle;
+            document.getElementById('contactDesc').innerText = content[currentLang].contactDesc;
             document.getElementById('blogTitle').innerText = content[currentLang].blog;
             document.getElementById('langBtn').innerText = content[currentLang].langBtn;
-
-            // Update Nav Links
-            const links = document.querySelectorAll('.nav-links a');
-            links.forEach(link => {
-                link.innerText = link.getAttribute(`data-${currentLang}`);
-            });
         }
     </script>
 </body>
