@@ -3,36 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23 | المتون</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@200;500&display=swap" rel="stylesheet">
+    <title>23 | المتون الفكرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@200;400;500&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #F4F1EA; --primary: #1A1A1B; --accent: #A67C52; }
-        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; }
-        nav { padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .logo { font-family: 'Amiri', serif; font-size: 2.2rem; text-decoration: none; color: var(--primary); font-weight: bold; }
-        .nav-links a { text-decoration: none; color: var(--primary); margin-right: 2rem; font-weight: 500; font-size: 0.9rem; }
-        .active { border-bottom: 2px solid var(--accent); }
+        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; line-height: 2; }
         
-        .content-area { padding: 5rem 15%; text-align: center; }
-        .essay-placeholder { border-right: 2px solid var(--accent); padding: 2rem; margin-top: 3rem; font-size: 1.5rem; font-style: italic; color: #555; }
+        nav { padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid rgba(0,0,0,0.05); sticky: top; }
+        .logo { font-family: 'Amiri', serif; font-size: 2.2rem; text-decoration: none; color: var(--primary); font-weight: bold; }
+        
+        /* مشغل الصوت الأنيق */
+        .audio-control {
+            position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+            display: flex; align-items: center; gap: 10px;
+            background: var(--primary); color: white; padding: 10px 20px;
+            border-radius: 50px; cursor: pointer; font-size: 0.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s;
+        }
+        .audio-control:hover { background: var(--accent); }
+
+        .content-area { max-width: 800px; margin: 5rem auto; padding: 0 20px; text-align: justify; }
+        .essay-title { font-family: 'Amiri', serif; font-size: 3.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary); }
+        .quote-box { border-right: 4px solid var(--accent); padding-right: 2rem; margin: 3rem 0; font-style: italic; color: #444; font-size: 1.3rem; }
+        
+        p { margin-bottom: 2rem; font-size: 1.25rem; font-weight: 300; }
+        h3 { font-family: 'Amiri', serif; font-size: 2rem; color: var(--accent); margin-top: 4rem; }
+        
+        .no-select { user-select: none; -webkit-user-select: none; }
     </style>
 </head>
-<body>
+<body class="no-select">
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="audio-control" onclick="toggleAudio()">
+        <span id="audioStatus">🔈 استحضار الجو الفكري</span>
+    </div>
+
     <nav>
         <a href="index.html" class="logo">23</a>
-        <div class="nav-links">
-            <a href="index.html">الجوهر</a>
-            <a href="essays.html" class="active">المتون الفكرية</a>
-            <a href="contact.html">تواصل</a>
+        <div style="display: flex; gap: 20px;">
+            <a href="index.html" style="text-decoration:none; color:var(--primary)">الجوهر</a>
+            <a href="essays.html" style="text-decoration:none; color:var(--accent); font-weight:bold;">المتون</a>
         </div>
     </nav>
 
-    <div class="content-area">
-        <h2 style="font-family: 'Amiri'; font-size: 3rem;">مكتبة المتون</h2>
-        <p>هنا ستوضع المقالات الفلسفية العميقة التي تُعيد صياغة أسئلة الوجود.</p>
-        <div class="essay-placeholder">
-            "قريباً.. نصوص فلسفية تُحاكي الوجع الإنساني والنهضة الفكرية."
+    <article class="content-area">
+        <h1 class="essay-title">الإيمان حين يُختبر بالخذلان</h1>
+        
+        <div class="quote-box">
+            "كيف نؤمن في بلدٍ يرى فيه الإنسانُ الظلمَ يومياً كطيفٍ لا يغادرُ الزوايا؟ وهل اليقينُ إلا رمادُ الاحتراقِ الأول؟"
         </div>
-    </div>
+
+        <p>في هذه الجغرافيا التي أثقلتها السنين، لم يعد السؤال عن "ما هو الإيمان" ترفاً فكرياً، بل أصبح ضرورة للبقاء. إن الإيمان وسط الركام ليس طمأنينة باردة، بل هو أرقى أشكال المقاومة الصامتة.</p>
+
+        <h3>1. ولادة اليقين من رحم الانكسار</h3>
+        <p>هل يولد الإيمان قبل الانكسار أم بعده؟ الحقيقة أن الإيمان الذي يسبق الانكسار هو إيمان "الوراثة" و"العادة"، هو إيمان هش لا يصمد أمام أول عاصفة من الظلم. أما الإيمان الحقيقي، فهو ذلك الذي ينبثق حين تتحطم كل الأوهام الأرضية، حين يُترك الإنسان وحيداً مع خذلانه، فيدرك أن هناك حقيقة أبعد من هذا المشهد المأساوي.</p>
+
+        <h3>2. الإيمان كفعل تمرد</h3>
+        <p>أن ترفض أن تصبح ظالماً وأنت ترى الظلم يحيط بك، أن ترفض القبح وأنت تسكنه، هذا هو الإيمان. إنه ليس هروباً من الواقع، بل هو "تعالٍ" عليه. في بلادنا، يمارس البسطاء معجزة يومية حين يبتسمون في وجه الحياة رغم خذلانها لهم، هذا الصمود هو أصدق نص فلسفي كُتب على الإطلاق.</p>
+
+        <p style="text-align: center; margin-top: 5rem; font-style: italic; color: var(--accent);">— نُشر بواسطة 23 | اليمن</p>
+    </article>
+
+    <script>
+        function toggleAudio() {
+            var audio = document.getElementById("bgMusic");
+            var status = document.getElementById("audioStatus");
+            if (audio.paused) {
+                audio.play();
+                status.innerHTML = "🔊 إيقاف التأمل";
+            } else {
+                audio.pause();
+                status.innerHTML = "🔈 استحضار الجو الفكري";
+            }
+        }
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
 </body>
 </html>
