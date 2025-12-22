@@ -15,19 +15,25 @@
         .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); }
         .hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 10%; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
         .section { padding: 60px 10%; }
-        .section-title { font-size: 2rem; color: var(--primary); margin-bottom: 30px; text-align: center; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-top: 5px solid var(--secondary); margin-bottom: 20px; }
+        .section-title { font-size: 2rem; color: var(--primary); margin-bottom: 30px; text-align: center; border-bottom: 2px solid var(--secondary); display: inline-block; width: auto; margin-right: auto; margin-left: auto; padding-bottom: 5px; }
+        .container-title { text-align: center; margin-bottom: 40px; }
         
-        /* قسم الأسئلة الشائعة الجديد */
+        /* قسم الخدمات الجديد */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .service-card { background: white; padding: 25px; border-radius: 15px; text-align: center; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .service-card:hover { transform: translateY(-10px); background: var(--primary); color: white; }
+        .service-card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 15px; }
+        .service-card:hover i { color: white; }
+
         .faq-item { background: white; margin-bottom: 10px; border-radius: 10px; border: 1px solid #eee; }
         .faq-question { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 700; color: var(--secondary); }
-        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; color: #666; font-size: 0.95rem; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; color: #666; }
         .faq-item.active .faq-answer { padding-bottom: 20px; max-height: 200px; }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .gallery-item { background: #ddd; height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666; }
+        .gallery-item { background: #e0e0e0; height: 180px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; border: 2px dashed var(--secondary); }
 
-        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; z-index: 2000; text-decoration: none; }
+        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; z-index: 2000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -36,39 +42,67 @@
 
     <header class="hero">
         <h1>د. أنس الهبه</h1>
-        <p>"الطب ليس مجرد مهنة، بل ممارسة فلسفية لترميم الإنسان قبل الابتسامة."</p>
+        <p>"بين دقة المشرط وعمق الفكر، تكمن نواة الشفاء"</p>
     </header>
 
     <section class="section">
-        <h2 class="section-title">عن الطبيب والفكرة</h2>
-        <p style="text-align: justify;">أنا د. أنس الهبه، أؤمن أن العيادة مختبر إنساني من قلب صنعاء. انطلقت "نواة طبيب" لتربط بين دقة العلوم وعمق التفكير الإنساني.</p>
+        <div class="container-title"><h2 class="section-title">عن الطبيب والفكرة</h2></div>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">أنا د. أنس الهبه، أؤمن أن الطب رسالة إنسانية وفلسفية قبل أن تكون تقنية. في عيادتي بصنعاء، نسعى لتقديم رعاية طبية متكاملة تلامس احتياجات الإنسان قبل علاج الأسنان.</p>
     </section>
 
     <section class="section" style="background: #fff;">
-        <h2 class="section-title">معرض الحالات</h2>
+        <div class="container-title"><h2 class="section-title">خدماتنا التخصصية</h2></div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-tooth"></i>
+                <h3>تجميل الأسنان</h3>
+                <p>فينير وابتسامة هوليوود بأحدث التقنيات.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-implantation"></i>
+                <h3>زراعة الأسنان</h3>
+                <p>تعويض الأسنان المفقودة بحلول دائمة وآمنة.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-align-center"></i>
+                <h3>تقويم الأسنان</h3>
+                <p>تصحيح اصطفاف الأسنان لابتسامة متناسقة.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-sparkles"></i>
+                <h3>تبييض الأسنان</h3>
+                <p>إشراقة فورية باستخدام الليزر والمواد الآمنة.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container-title"><h2 class="section-title">معرض الحالات</h2></div>
         <div class="gallery-grid">
-            <div class="gallery-item">صورة حالة 1</div>
-            <div class="gallery-item">صورة حالة 2</div>
+            <div class="gallery-item">حالة تجميل (قبل/بعد)</div>
+            <div class="gallery-item">حالة زراعة (قبل/بعد)</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #fff;">
+        <div class="container-title"><h2 class="section-title">إجابات تهمك</h2></div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item">
+                <div class="faq-question">هل زراعة الأسنان عملية مؤلمة؟ <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">تتم العملية تحت التخدير الموضعي، وبفضل التقنيات الحديثة، الانزعاج يكون بسيطاً جداً ومماثلاً لخلع السن.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">كم تستغرق مدة علاج التقويم؟ <i class="fas fa-plus"></i></div>
+                <div class="faq-answer">تختلف المدة حسب الحالة، ولكنها تتراوح غالباً بين 6 أشهر إلى سنتين للحصول على نتائج مثالية.</div>
+            </div>
         </div>
     </section>
 
     <section class="section">
-        <h2 class="section-title">إجابات تهمك</h2>
-        <div class="faq-item">
-            <div class="faq-question">كيف أحافظ على صحة أسناني؟ <i class="fas fa-plus"></i></div>
-            <div class="faq-answer">الفحص الدوري كل 6 أشهر هو المفتاح الحقيقي للوقاية.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">كيف أحجز موعداً؟ <i class="fas fa-plus"></i></div>
-            <div class="faq-answer">عبر الضغط على زر الواتساب ومراسلتنا مباشرة.</div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title">نواة الفكر</h2>
-        <div class="card">
-            <h3>أبعد من مجرد ابتسامة</h3>
-            <p>الابتسامة هي بوابة الروح، ونحن هنا لنمُد الجسور بين جودة العلم وجودة الحياة.</p>
+        <div class="container-title"><h2 class="section-title">نواة الفكر</h2></div>
+        <div style="background: white; padding: 30px; border-radius: 15px; border-right: 5px solid var(--secondary);">
+            <h3>أبعد من مجرد ابتسامة: نحو فلسفة جديدة</h3>
+            <p>نحن لا نعالج الأسنان فحسب، بل نبحث في فلسفة الصحة وجودة الحياة. العيادة هي المكان الذي تلتقي فيه النزاهة العلمية بالأمانة الأخلاقية.</p>
         </div>
     </section>
 
@@ -84,9 +118,11 @@
         });
     </script>
 
-    <footer style="text-align: center; padding: 20px;">
-        <p>© 2025 د. أنس الهبه - صنعاء</p>
-        <a href="https://www.instagram.com/wawl23" style="color: var(--secondary); margin-right: 10px;"><i class="fab fa-instagram"></i></a>
+    <footer style="text-align: center; padding: 40px; background: var(--primary); color: white;">
+        <p>© 2025 د. أنس الهبه - صنعاء، اليمن</p>
+        <div style="margin-top: 15px;">
+            <a href="https://www.instagram.com/wawl23" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
 </body>
 </html>
