@@ -8,60 +8,28 @@
     <style>
         :root { --bg: #F4F1EA; --primary: #1A1A1B; --accent: #A67C52; --card-bg: #ffffff; }
         [data-theme="dark"] { --bg: #121212; --primary: #E0E0E0; --accent: #D4AF37; --card-bg: #1E1E1E; }
-
-        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; transition: 0.5s; overflow-x: hidden; }
-        
+        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; transition: 0.5s; }
         header { padding: 2rem 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166,124,82,0.1); }
         .logo { font-family: 'Amiri', serif; font-size: 2.2rem; text-decoration: none; color: var(--primary); font-weight: bold; }
-
         .container { max-width: 650px; margin: 4rem auto; padding: 0 20px; }
-        .page-intro { text-align: center; margin-bottom: 5rem; opacity: 0.7; font-size: 1.1rem; border-top: 1px solid var(--accent); display: inline-block; padding-top: 10px; width: 100%; }
-
-        .margin-card { 
-            background: var(--card-bg); padding: 2.5rem; margin-bottom: 3rem; border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02); border-right: 4px solid var(--accent);
-            position: relative; transition: 0.4s;
-        }
-        .margin-card:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
-        .margin-date { font-size: 0.75rem; opacity: 0.4; display: block; margin-bottom: 1.5rem; font-weight: 500; }
+        .margin-card { background: var(--card-bg); padding: 2.5rem; margin-bottom: 3rem; border-radius: 15px; border-right: 4px solid var(--accent); transition: 0.4s; }
         .margin-text { font-size: 1.25rem; line-height: 1.9; font-weight: 300; text-align: justify; }
-
-        .theme-toggle { cursor: pointer; border: 1px solid var(--accent); padding: 7px 18px; border-radius: 25px; font-size: 0.85rem; color: var(--accent); transition: 0.3s; }
-        .theme-toggle:hover { background: var(--accent); color: white; }
+        .theme-btn { cursor: pointer; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--accent); }
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="logo">23</a>
-        <div class="theme-toggle" id="modeBtn" onclick="toggleTheme()">الوضع الليلي</div>
+        <div style="display:flex; gap:15px; align-items:center;">
+            <a href="essays.html" style="text-decoration:none; color:var(--primary); font-size:0.9rem;">المتون</a>
+            <div class="theme-btn" id="modeBtn" onclick="toggleTheme()">الوضع الليلي</div>
+        </div>
     </header>
-
     <div class="container">
-        <div class="page-intro">"شذرات فكرية عابرة، مسودات لم تكتمل بعد."</div>
-
-        <div class="margin-card">
-            <span class="margin-date">22 ديسمبر 2025</span>
-            <div class="margin-text">
-                الغربة ليست دائماً رحيلاً عن الجغرافيا؛ أحياناً تكون الغربة هي أن تقف في قلب صنعاء، وتشعر أن لغتك، أحلامك، وتساؤلاتك الوجودية، أصبحت لغةً منقرضة لا يفهمها العابرون. نحن لا نغترب عن الأرض، بل نغترب عن الزمان الذي يشبهنا.
-            </div>
-        </div>
-
-        <div class="margin-card">
-            <span class="margin-date">21 ديسمبر 2025</span>
-            <div class="margin-text">
-                في بلدي، تعلمنا أن ننتظر كل شيء: ننتظر الكهرباء، ننتظر السلام، ننتظر الغد. لكن الأخطر من الانتظار هو أن نعتاد عليه. الاعتياد هو الموت الصامت للفكرة؛ لأن الذي ينتظر لا يبتكر، بل يكتفي بمراقبة الساعات وهي تأكل عمره.
-            </div>
-        </div>
-
-        <div class="margin-card">
-            <span class="margin-date">19 ديسمبر 2025</span>
-            <div class="margin-text">
-                يقولون إن الصمت علامة الرضا، وفي فلسفتي الصمت هو أقصى درجات الضجيج الداخلي. حين يعجز اللسان عن وصف حجم الخذلان، تلجأ الروح إلى الصمت كدرع أخير. لا تثق بصمت المفكر، فخلفه براكين من الأسئلة.
-            </div>
-        </div>
+        <div style="text-align:center; margin-bottom:4rem; opacity:0.6;">"شذرات فكرية عابرة"</div>
+        <div class="margin-card"><div class="margin-text">الغربة ليست رحيلاً عن الجغرافيا؛ بل هي شعورك بأن لغتك وتساؤلاتك أصبحت لغةً منقرضة وسط العابرين.</div></div>
+        <div class="margin-card"><div class="margin-text">في بلدي، تعلمنا الانتظار حتى أكلت الساعاتُ أعمارنا. الأخطر من الانتظار هو الاعتياد عليه.</div></div>
     </div>
-
     <script>
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
