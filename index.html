@@ -25,6 +25,16 @@
         .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 40px; text-align: center; }
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-top: 5px solid var(--secondary); }
+        
+        /* معرض الحالات */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+        .gallery-item { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-5px); }
+        .gallery-item img { width: 100%; height: 200px; object-fit: cover; }
+        .gallery-content { padding: 15px; text-align: center; }
+        .gallery-content h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; }
+        .gallery-content p { font-size: 0.9rem; color: #555; }
+
         .contact-box { background: var(--primary); color: white; padding: 50px 20px; border-radius: 20px; text-align: center; }
         .social-links { margin-top: 30px; display: flex; justify-content: center; gap: 25px; }
         .social-links a { color: white; font-size: 2rem; transition: 0.3s; }
@@ -51,6 +61,43 @@
             <div style="text-align: justify; font-size: 1.15rem;">
                 <p id="aboutP1">أنا د. أنس الهبه، طبيب أسنان أؤمن بأن العيادة هي مختبر إنساني قبل أن تكون مركزاً علاجياً. من قلب صنعاء، انطلقت فكرة "نواة طبيب" لتكون جسراً يربط بين دقة العلوم الطبية وعمق التفكير الإنساني.</p>
             </div>
+        </section>
+
+        <section class="section" style="background-color: #f2f4f6;">
+            <h2 class="section-title" id="galleryTitle">معرض الحالات والإنجازات</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x200/2D5A61/FFFFFF?text=قبل+العلاج" alt="حالة أسنان قبل العلاج">
+                    <div class="gallery-content">
+                        <h3>حالة ترميم متقدمة (قبل)</h3>
+                        <p>تفاصيل الحالة: ترميم أسنان أمامية متضررة وتجميل ابتسامة.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x200/1A2B3C/FFFFFF?text=بعد+العلاج" alt="حالة أسنان بعد العلاج">
+                    <div class="gallery-content">
+                        <h3>حالة ترميم متقدمة (بعد)</h3>
+                        <p>النتيجة: استعادة المظهر الطبيعي والوظيفي للأسنان، ابتسامة جديدة.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x200/2D5A61/FFFFFF?text=تجميل+ابتسامة" alt="حالة تجميل ابتسامة">
+                    <div class="gallery-content">
+                        <h3>تصميم ابتسامة هوليوود</h3>
+                        <p>تفاصيل: استخدام تقنيات الفينير لابتسامة مثالية.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x200/1A2B3C/FFFFFF?text=تقويم+أسنان" alt="حالة تقويم أسنان">
+                    <div class="gallery-content">
+                        <h3>تقويم أسنان شفاف</h3>
+                        <p>تفاصيل: معالجة حالة سوء إطباق بالتقويم الشفاف.</p>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 0.9rem; color: #777;" id="disclaimerText">
+                تُعرض هذه الحالات بموافقة المرضى وبغرض التوضيح العلمي، مع الحفاظ على خصوصيتهم.
+            </p>
         </section>
 
         <section class="section" id="blog">
@@ -90,6 +137,9 @@
                 tagline: '"الطب ليس مجرد مهنة، بل هو ممارسة فلسفية تسعى لترميم الإنسان قبل ترميم الابتسامة."',
                 aboutTitle: "عن الطبيب والفكرة",
                 aboutP1: "أنا د. أنس الهبه، طبيب أسنان أؤمن بأن العيادة هي مختبر إنساني قبل أن تكون مركزاً علاجياً. من قلب صنعاء، انطلقت فكرة 'نواة طبيب' لتكون جسراً يربط بين دقة العلوم الطبية وعمق التفكير الإنساني.",
+                galleryTitle: "معرض الحالات والإنجازات",
+                disclaimerText: "تُعرض هذه الحالات بموافقة المرضى وبغرض التوضيح العلمي، مع الحفاظ على خصوصيتهم.",
+                blog: "نواة الفكر (المدونة)",
                 contactTitle: "تواصل فكري وطبي", langBtn: "English"
             },
             en: {
@@ -97,6 +147,9 @@
                 tagline: '"Medicine is not just a profession; it is a philosophical practice that seeks to restore the human before the smile."',
                 aboutTitle: "About the Doctor",
                 aboutP1: "I am Dr. Anas Al-Hiba, a dentist from Sana'a. 'Doctor's Nucleus' is a bridge between medical science and human depth.",
+                galleryTitle: "Cases & Achievements Gallery",
+                disclaimerText: "These cases are displayed with patient consent for scientific illustration, maintaining their privacy.",
+                blog: "Intellectual Nucleus (Blog)",
                 contactTitle: "Contact Me", langBtn: "العربية"
             }
         };
@@ -110,6 +163,9 @@
             document.getElementById('heroTagline').innerText = content[currentLang].tagline;
             document.getElementById('aboutTitle').innerText = content[currentLang].aboutTitle;
             document.getElementById('aboutP1').innerText = content[currentLang].aboutP1;
+            document.getElementById('galleryTitle').innerText = content[currentLang].galleryTitle;
+            document.getElementById('disclaimerText').innerText = content[currentLang].disclaimerText;
+            // You might need to update blog title and other dynamic content here as well
             document.getElementById('contactTitle').innerText = content[currentLang].contactTitle;
             document.getElementById('langBtn').innerText = content[currentLang].langBtn;
         }
