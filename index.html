@@ -17,33 +17,37 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Tajawal', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        body { font-family: 'Tajawal', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.8; }
         
         nav { background: white; padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); }
         .lang-switch { cursor: pointer; padding: 5px 15px; border: 1px solid var(--secondary); border-radius: 20px; font-size: 0.8rem; text-decoration: none; color: var(--secondary); }
 
-        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
-        .hero h1 { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; color: var(--secondary); max-width: 700px; margin-bottom: 2rem; font-style: italic; }
+        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 10%; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
+        .hero h1 { font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; color: var(--secondary); max-width: 800px; font-style: italic; border-right: 3px solid var(--secondary); padding-right: 15px; }
 
-        .section { padding: 60px 10%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border-bottom: 4px solid var(--secondary); }
+        .section { padding: 80px 10%; }
+        .section-title { font-size: 2rem; color: var(--primary); margin-bottom: 30px; text-align: center; position: relative; }
+        .section-title::after { content: ''; width: 50px; height: 3px; background: var(--secondary); position: absolute; bottom: -10px; right: 50%; transform: translateX(50%); }
 
-        /* تواصل معي */
-        .contact-box { background: var(--primary); color: white; padding: 40px; border-radius: 15px; text-align: center; margin-top: 40px; }
-        .social-links { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
-        .social-links a { color: white; font-size: 1.5rem; transition: 0.3s; }
-        .social-links a:hover { color: var(--whatsapp); transform: scale(1.1); }
+        .about-content { display: grid; grid-template-columns: 1fr; gap: 40px; text-align: justify; font-size: 1.1rem; }
+        
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-top: 5px solid var(--secondary); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card i { font-size: 2rem; color: var(--secondary); margin-bottom: 20px; }
 
-        /* زر الواتساب العائم */
-        .whatsapp-float { position: fixed; bottom: 20px; left: 20px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 2000; text-decoration: none; transition: 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        .contact-box { background: var(--primary); color: white; padding: 60px 20px; border-radius: 20px; text-align: center; margin-top: 50px; }
+        .social-links { margin-top: 30px; display: flex; justify-content: center; gap: 25px; }
+        .social-links a { color: white; font-size: 2rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--whatsapp); transform: translateY(-5px); }
 
-        footer { text-align: center; padding: 30px; font-size: 0.9rem; color: #666; }
+        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: var(--whatsapp); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 35px; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); z-index: 2000; text-decoration: none; }
 
-        [dir="ltr"] { font-family: 'Montserrat', sans-serif; }
+        footer { text-align: center; padding: 40px; background: white; border-top: 1px solid #eee; }
+
+        [dir="ltr"] .hero p { border-right: none; border-left: 3px solid var(--secondary); padding-right: 0; padding-left: 15px; }
     </style>
 </head>
 <body>
@@ -55,28 +59,46 @@
 
     <section class="hero">
         <h1 id="heroTitle">د. أنس الهبه</h1>
-        <p id="heroTagline">"بين دقة المشرط وعمق الفكر، تكمن نواة الشفاء.. رحلة في طب الأسنان وفلسفة الإنسان."</p>
+        <p id="heroTagline">"الطب ليس مجرد مهنة، بل هو ممارسة فلسفية تسعى لترميم الإنسان قبل ترميم الابتسامة."</p>
     </section>
 
     <section class="section">
-        <div class="contact-box">
-            <h2 id="contactTitle">تواصل معي مباشرة</h2>
-            <p id="contactDesc">يسعدني استقبال استفساراتكم الطبية والفكرية عبر المنصات التالية:</p>
-            <div class="social-links">
-                <a href="https://wa.me/967738912775" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/wawl23?igsh=MWpiMmdyOTF1cnE5aA==" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:contact@anasalhiba.com"><i class="far fa-envelope"></i></a>
+        <h2 class="section-title" id="aboutTitle">عن الطبيب والفكرة</h2>
+        <div class="about-content">
+            <p id="aboutP1">أنا د. أنس الهبه، طبيب أسنان أؤمن بأن العيادة هي مختبر إنساني قبل أن تكون مركزاً علاجياً. من قلب صنعاء، انطلقت فكرة "نواة طبيب" لتكون جسراً يربط بين دقة العلوم الطبية وعمق التفكير الإنساني.</p>
+            <p id="aboutP2">تجاوزت في مسيرتي النظرة التقليدية لطب الأسنان كإجراء ميكانيكي، ليكون التركيز على 'النزاهة العلمية' و'الأمانة الأخلاقية'. هنا، لا نعالج الأسنان فحسب، بل نبحث في فلسفة الصحة وجودة الحياة.</p>
+        </div>
+    </section>
+
+    <section class="section" style="background: #fff;">
+        <h2 class="section-title" id="valuesTitle">قيمنا المهنية</h2>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-microscope"></i>
+                <h3 id="v1T">الدقة العلمية</h3>
+                <p id="v1D">نعتمد أحدث البروتوكولات الأكاديمية لضمان نتائج علاجية مستدامة ومبنية على الدليل العلمي.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3 id="v2T">الأمانة الإنسانية</h3>
+                <p id="v2D">مصلحة المريض هي البوصلة الوحيدة التي توجه قراراتنا الطبية بعيداً عن أي حسابات تجارية.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-lightbulb"></i>
+                <h3 id="v3T">العمق الفكري</h3>
+                <p id="v3D">نسعى لنشر الوعي الطبي بأسلوب رصين يلامس العقل ويغير المفاهيم الصحية الخاطئة.</p>
             </div>
         </div>
     </section>
 
-    <section class="section" id="blog">
-        <h2 style="text-align:center; margin-bottom:30px;" id="blogTitle">مقالات مختارة</h2>
-        <div class="grid">
-            <div class="card">
-                <small>فلسفة طبية</small>
-                <h3>أخلاقيات المهنة</h3>
-                <p>كيف نوازن بين العلم والقيم في عيادة الأسنان؟</p>
+    <section class="section">
+        <div class="contact-box">
+            <h2 id="contactTitle">تواصل فكري وطبي</h2>
+            <p id="contactDesc">مكتبي وعيادتي مفتوحان لاستفساراتكم ومناقشاتكم العلمية</p>
+            <div class="social-links">
+                <a href="https://wa.me/967738912775" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/wawl23?igsh=MWpiMmdyOTF1cnE5aA==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:contact@anasalhiba.com"><i class="far fa-envelope"></i></a>
             </div>
         </div>
     </section>
@@ -86,7 +108,7 @@
     </a>
 
     <footer>
-        <p>© 2025 د. أنس الهبه - صنعاء، اليمن</p>
+        <p>© 2025 د. أنس الهبه | صنعاء - الجمهورية اليمنية</p>
     </footer>
 
     <script>
@@ -95,19 +117,31 @@
             ar: {
                 logo: "نواة طبيب",
                 title: "د. أنس الهبه",
-                tagline: '"بين دقة المشرط وعمق الفكر، تكمن نواة الشفاء.. رحلة في طب الأسنان وفلسفة الإنسان."',
-                contactTitle: "تواصل معي مباشرة",
-                contactDesc: "يسعدني استقبال استفساراتكم الطبية والفكرية عبر المنصات التالية:",
-                blog: "مقالات مختارة",
+                tagline: '"الطب ليس مجرد مهنة، بل هو ممارسة فلسفية تسعى لترميم الإنسان قبل ترميم الابتسامة."',
+                aboutTitle: "عن الطبيب والفكرة",
+                aboutP1: "أنا د. أنس الهبه، طبيب أسنان أؤمن بأن العيادة هي مختبر إنساني قبل أن تكون مركزاً علاجياً. من قلب صنعاء، انطلقت فكرة 'نواة طبيب' لتكون جسراً يربط بين دقة العلوم الطبية وعمق التفكير الإنساني.",
+                aboutP2: "تجاوزت في مسيرتي النظرة التقليدية لطب الأسنان كإجراء ميكانيكي، ليكون التركيز على 'النزاهة العلمية' و'الأمانة الأخلاقية'. هنا، لا نعالج الأسنان فحسب، بل نبحث في فلسفة الصحة وجودة الحياة.",
+                valuesTitle: "قيمنا المهنية",
+                v1T: "الدقة العلمية", v1D: "نعتمد أحدث البروتوكولات الأكاديمية لضمان نتائج علاجية مستدامة.",
+                v2T: "الأمانة الإنسانية", v2D: "مصلحة المريض هي البوصلة الوحيدة التي توجه قراراتنا الطبية.",
+                v3T: "العمق الفكري", v3D: "نسعى لنشر الوعي الطبي بأسلوب رصين يلامس العقل.",
+                contactTitle: "تواصل فكري وطبي",
+                contactDesc: "مكتبي وعيادتي مفتوحان لاستفساراتكم ومناقشاتكم العلمية",
                 langBtn: "English"
             },
             en: {
                 logo: "Doctor's Nucleus",
                 title: "Dr. Anas Al-Hiba",
-                tagline: '"Between the precision of the scalpel and the depth of thought lies the nucleus of healing."',
-                contactTitle: "Contact Me Directly",
-                contactDesc: "I am happy to receive your medical and intellectual inquiries through the following platforms:",
-                blog: "Selected Articles",
+                tagline: '"Medicine is not just a profession; it is a philosophical practice that seeks to restore the human before the smile."',
+                aboutTitle: "About the Doctor & The Concept",
+                aboutP1: "I am Dr. Anas Al-Hiba, a dentist who believes that a clinic is a human laboratory before it is a treatment center. From the heart of Sana'a, 'Doctor's Nucleus' emerged as a bridge between medical precision and human depth.",
+                aboutP2: "In my career, I have moved beyond the traditional view of dentistry as a mechanical procedure, focusing instead on 'scientific integrity' and 'ethical honesty'.",
+                valuesTitle: "Professional Values",
+                v1T: "Scientific Precision", v1D: "We adopt the latest academic protocols to ensure sustainable clinical results.",
+                v2T: "Ethical Integrity", v2D: "The patient's best interest is the only compass for our medical decisions.",
+                v3T: "Intellectual Depth", v3D: "We aim to spread medical awareness in a sophisticated manner that engages the mind.",
+                contactTitle: "Intellectual & Medical Contact",
+                contactDesc: "My office and clinic are open for your medical and scientific inquiries.",
                 langBtn: "العربية"
             }
         };
@@ -120,9 +154,15 @@
             document.getElementById('siteLogo').innerText = content[currentLang].logo;
             document.getElementById('heroTitle').innerText = content[currentLang].title;
             document.getElementById('heroTagline').innerText = content[currentLang].tagline;
+            document.getElementById('aboutTitle').innerText = content[currentLang].aboutTitle;
+            document.getElementById('aboutP1').innerText = content[currentLang].aboutP1;
+            document.getElementById('aboutP2').innerText = content[currentLang].aboutP2;
+            document.getElementById('valuesTitle').innerText = content[currentLang].valuesTitle;
+            document.getElementById('v1T').innerText = content[currentLang].v1T; document.getElementById('v1D').innerText = content[currentLang].v1D;
+            document.getElementById('v2T').innerText = content[currentLang].v2T; document.getElementById('v2D').innerText = content[currentLang].v2D;
+            document.getElementById('v3T').innerText = content[currentLang].v3T; document.getElementById('v3D').innerText = content[currentLang].v3D;
             document.getElementById('contactTitle').innerText = content[currentLang].contactTitle;
             document.getElementById('contactDesc').innerText = content[currentLang].contactDesc;
-            document.getElementById('blogTitle').innerText = content[currentLang].blog;
             document.getElementById('langBtn').innerText = content[currentLang].langBtn;
         }
     </script>
