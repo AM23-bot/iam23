@@ -3,169 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23 | كوكبة البرو ماكس</title>
+    <title>23 | كوكبة الثقوب الدودية</title>
     <style>
         body { margin: 0; background: #000; color: #fff; font-family: 'Amiri', serif; overflow: hidden; }
-        /* تصميم صندوق المعلومات كما في الصورة */
         .info-box { 
             position: fixed; bottom: 50px; right: 50px; width: 320px; 
             background: rgba(15, 15, 15, 0.9); padding: 25px; 
             border: 1px solid rgba(166, 124, 82, 0.5); border-radius: 15px; 
             backdrop-filter: blur(20px); pointer-events: none; opacity: 0; 
             transition: 0.6s all cubic-bezier(0.23, 1, 0.32, 1); z-index: 1000;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .active-info { opacity: 1; transform: translateY(-20px); }
-        .info-box h2 { color: #A67C52; margin: 0 0 10px 0; font-size: 1.6rem; border-bottom: 1px solid rgba(166,124,82,0.2); padding-bottom: 10px; }
-        .info-box p { font-size: 1rem; line-height: 1.7; color: #ccc; margin: 15px 0 0 0; }
-        
         .back-btn { 
             position: fixed; top: 30px; left: 30px; color: #A67C52; 
             text-decoration: none; border: 1px solid #A67C52; padding: 10px 25px; 
             border-radius: 50px; font-size: 0.8rem; z-index: 1001; transition: 0.4s;
             background: rgba(0,0,0,0.5);
         }
-        .back-btn:hover { background: #A67C52; color: #fff; box-shadow: 0 0 20px rgba(166,124,82,0.4); }
+        /* تأثير بوابة الانتقال */
+        #wormhole-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent, #000);
+            pointer-events: none; z-index: 2000; opacity: 0; transition: 1.5s;
+        }
     </style>
 </head>
 <body>
 
+    <div id="wormhole-overlay"></div>
     <a href="index.html" class="back-btn">← العودة للجوهر</a>
 
     <div class="info-box" id="info">
-        <h2 id="title"></h2>
+        <h2 id="title" style="color:#A67C52; margin:0;"></h2>
         <p id="desc"></p>
+        <p style="font-size:0.7rem; color:var(--accent); margin-top:10px; opacity:0.6;">(انقر للدخول إلى الثقب الدودي)</p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
         let particles = [];
         let nodes = [];
-        const PARTICLE_COUNT = 800; // عدد الجزيئات المحيطة
+        let isTransitioning = false;
+        let targetLink = "";
 
         function setup() {
             createCanvas(windowWidth, windowHeight);
-            
-            // تعريف العقد الأساسية (الأفكار)
-            nodes.push(new IdeaNode("الإيمان", "تمرد الواعي على عبثية المشهد المطلق.", 0.5, 0.5));
-            nodes.push(new IdeaNode("الخذلان", "المقصلة التي تعيد تعريف حدود الروح.", 0.65, 0.35));
-            nodes.push(new IdeaNode("صنعاء", "ذاكرة الطين التي لا تجف، ووجع الغبار الجميل.", 0.4, 0.7));
-            nodes.push(new IdeaNode("الشك", "الممر الضيق نحو يقين لا ينكسر.", 0.35, 0.3));
-            nodes.push(new IdeaNode("الغربة", "أن تسكن وطناً لا يشبه ملامح قلبك.", 0.75, 0.65));
-            nodes.push(new IdeaNode("العدم", "البداية التي تسبق كل ولادة فكرية.", 0.25, 0.55));
+            // أضفنا روابط المقالات هنا (link)
+            nodes.push(new IdeaNode("الإيمان", "تمرد الواعي على عبثية المشهد المطلق.", 0.5, 0.5, "faith-test.html"));
+            nodes.push(new IdeaNode("الخذلان", "المقصلة التي تعيد تعريف حدود الروح.", 0.65, 0.35, "essays.html"));
+            nodes.push(new IdeaNode("صنعاء", "ذاكرة الطين التي لا تجف.", 0.4, 0.7, "dictionary.html"));
+            nodes.push(new IdeaNode("الشك", "الممر الضيق نحو يقين لا ينكسر.", 0.35, 0.3, "margins.html"));
 
-            // إنشاء الجزيئات (السديم)
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push(new Particle());
-            }
+            for (let i = 0; i < 600; i++) particles.push(new Particle());
         }
 
         function draw() {
-            background(0, 0, 0, 50); // ذيل حركي خفيف
+            background(0, 0, 0, isTransitioning ? 100 : 50);
 
-            // رسم الجزيئات وتحديثها
             for (let p of particles) {
+                if (isTransitioning) p.attractToCenter(); 
                 p.update();
                 p.display();
             }
 
-            // رسم الخطوط الرفيعة جداً بين الأفكار القريبة
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    let d = dist(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-                    if (d < 350) {
-                        stroke(166, 124, 82, map(d, 0, 350, 40, 0));
-                        strokeWeight(0.5);
-                        line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-                    }
-                }
-            }
-
-            // تحديث ورسم العقد
             let hoveredAny = false;
             for (let n of nodes) {
                 n.update();
                 n.display();
-                if (n.isHovered()) {
+                if (n.isHovered() && !isTransitioning) {
                     showInfo(n.title, n.desc);
+                    cursor(HAND);
                     hoveredAny = true;
                 }
             }
-            if (!hoveredAny) hideInfo();
+            if (!hoveredAny) { hideInfo(); cursor(ARROW); }
+        }
+
+        function mousePressed() {
+            for (let n of nodes) {
+                if (n.isHovered()) {
+                    openWormhole(n.link);
+                }
+            }
+        }
+
+        function openWormhole(link) {
+            isTransitioning = true;
+            targetLink = link;
+            document.getElementById('wormhole-overlay').style.opacity = '1';
+            setTimeout(() => { window.location.href = targetLink; }, 1500);
         }
 
         class IdeaNode {
-            constructor(title, desc, xPct, yPct) {
-                this.title = title; this.desc = desc;
+            constructor(title, desc, xPct, yPct, link) {
+                this.title = title; this.desc = desc; this.link = link;
                 this.x = width * xPct; this.y = height * yPct;
-                this.targetX = this.x; this.targetY = this.y;
-                this.angle = random(TWO_PI);
+                this.baseX = this.x; this.baseY = this.y;
             }
             update() {
-                // حركة عائمة بطيئة
-                this.x = this.targetX + Math.sin(frameCount * 0.02 + this.angle) * 10;
-                this.y = this.targetY + Math.cos(frameCount * 0.02 + this.angle) * 10;
-                
-                // تفاعل مع الماوس
-                let d = dist(mouseX, mouseY, this.x, this.y);
-                if (d < 200) {
-                    this.x = lerp(this.x, mouseX, 0.05);
-                    this.y = lerp(this.y, mouseY, 0.05);
-                }
+                this.x = this.baseX + sin(frameCount * 0.02) * 10;
+                this.y = this.baseY + cos(frameCount * 0.02) * 10;
             }
             display() {
-                // رسم هالة حول النقطة
                 noStroke();
-                fill(166, 124, 82, 30);
-                ellipse(this.x, this.y, 40 + Math.sin(frameCount * 0.1) * 10);
-                fill(166, 124, 82);
-                ellipse(this.x, this.y, 10);
-                
-                // كتابة النص فوق النقطة بخلفية صغيرة
+                fill(166, 124, 82, 50);
+                ellipse(this.x, this.y, 30 + sin(frameCount*0.1)*5);
+                fill(212, 175, 55);
+                ellipse(this.x, this.y, 8);
                 fill(255);
-                textAlign(CENTER);
                 textSize(12);
-                text(this.title.toUpperCase(), this.x, this.y - 20);
+                text(this.title, this.x, this.y - 20);
             }
             isHovered() { return dist(mouseX, mouseY, this.x, this.y) < 30; }
         }
 
         class Particle {
-            constructor() {
-                this.reset();
-            }
+            constructor() { this.reset(); }
             reset() {
-                this.x = random(width); this.y = random(height);
-                this.vx = random(-0.5, 0.5); this.vy = random(-0.5, 0.5);
-                this.alpha = random(10, 150);
-                this.size = random(0.5, 2);
+                this.pos = createVector(random(width), random(height));
+                this.vel = createVector(random(-0.5, 0.5), random(-0.5, 0.5));
+                this.acc = createVector(0, 0);
+                this.maxSpeed = 2;
             }
             update() {
-                this.x += this.vx; this.y += this.vy;
-                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
-                
-                // الانجذاب للماوس
-                let d = dist(mouseX, mouseY, this.x, this.y);
-                if (d < 150) {
-                    this.x = lerp(this.x, mouseX, 0.01);
-                    this.y = lerp(this.y, mouseY, 0.01);
-                }
+                this.vel.add(this.acc);
+                this.pos.add(this.vel);
+                this.acc.mult(0);
+                if (this.pos.x < 0 || this.pos.x > width || this.pos.y < 0 || this.pos.y > height) this.reset();
+            }
+            attractToCenter() {
+                let center = createVector(width/2, height/2);
+                let force = p5.Vector.sub(center, this.pos);
+                force.setMag(0.5);
+                this.acc.add(force);
+                this.maxSpeed = 15;
+                this.vel.limit(this.maxSpeed);
             }
             display() {
                 noStroke();
-                fill(212, 175, 55, this.alpha);
-                ellipse(this.x, this.y, this.size);
+                fill(212, 175, 55, 150);
+                ellipse(this.pos.x, this.pos.y, 1.5);
             }
         }
 
         function showInfo(t, d) {
-            const box = document.getElementById('info');
             document.getElementById('title').innerText = t;
             document.getElementById('desc').innerText = d;
-            box.classList.add('active-info');
+            document.getElementById('info').classList.add('active-info');
         }
         function hideInfo() { document.getElementById('info').classList.remove('active-info'); }
-        function windowResized() { resizeCanvas(windowWidth, windowHeight); }
     </script>
 </body>
 </html>
