@@ -3,155 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23 | كوكبة الثقوب الدودية</title>
+    <title>23 | العدم المضيء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #000; color: #fff; font-family: 'Amiri', serif; overflow: hidden; }
-        .info-box { 
-            position: fixed; bottom: 50px; right: 50px; width: 320px; 
-            background: rgba(15, 15, 15, 0.9); padding: 25px; 
-            border: 1px solid rgba(166, 124, 82, 0.5); border-radius: 15px; 
-            backdrop-filter: blur(20px); pointer-events: none; opacity: 0; 
-            transition: 0.6s all cubic-bezier(0.23, 1, 0.32, 1); z-index: 1000;
+        body { 
+            margin: 0; 
+            background: #000; 
+            color: #fff; 
+            font-family: 'Amiri', serif; 
+            height: 100vh; 
+            overflow: hidden; 
+            cursor: none; /* إخفاء الماوس ليصبح الضوء هو الماوس */
         }
-        .active-info { opacity: 1; transform: translateY(-20px); }
-        .back-btn { 
-            position: fixed; top: 30px; left: 30px; color: #A67C52; 
-            text-decoration: none; border: 1px solid #A67C52; padding: 10px 25px; 
-            border-radius: 50px; font-size: 0.8rem; z-index: 1001; transition: 0.4s;
-            background: rgba(0,0,0,0.5);
+
+        /* كشاف الضوء */
+        #flashlight {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(166,124,82,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 10;
         }
-        /* تأثير بوابة الانتقال */
-        #wormhole-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent, #000);
-            pointer-events: none; z-index: 2000; opacity: 0; transition: 1.5s;
+
+        .content-layer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .idea {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.03; /* شبه مخفية تماماً */
+            transition: opacity 0.5s;
+            text-decoration: none;
+            color: #A67C52;
+        }
+
+        /* الكلمة التي يقترب منها الضوء تضيء */
+        .idea.visible {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(166,124,82,0.5);
+        }
+
+        .back-link {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            color: #444;
+            text-decoration: none;
+            font-size: 0.8rem;
+            z-index: 20;
         }
     </style>
 </head>
 <body>
 
-    <div id="wormhole-overlay"></div>
-    <a href="index.html" class="back-btn">← العودة للجوهر</a>
+    <div id="flashlight"></div>
+    <a href="index.html" class="back-link">العودة للجوهر</a>
 
-    <div class="info-box" id="info">
-        <h2 id="title" style="color:#A67C52; margin:0;"></h2>
-        <p id="desc"></p>
-        <p style="font-size:0.7rem; color:var(--accent); margin-top:10px; opacity:0.6;">(انقر للدخول إلى الثقب الدودي)</p>
+    <div class="content-layer" id="universe">
+        <a href="faith-test.html" class="idea" style="top: 20%; left: 30%;">الإيمان</a>
+        <a href="#" class="idea" style="top: 50%; left: 50%;">العدم</a>
+        <a href="#" class="idea" style="top: 70%; left: 20%;">صنعاء</a>
+        <a href="#" class="idea" style="top: 40%; left: 80%;">الخذلان</a>
+        <a href="#" class="idea" style="top: 80%; left: 60%;">الغربة</a>
+        <a href="#" class="idea" style="top: 15%; left: 70%;">الشك</a>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
-        let particles = [];
-        let nodes = [];
-        let isTransitioning = false;
-        let targetLink = "";
+        const flashlight = document.getElementById('flashlight');
+        const ideas = document.querySelectorAll('.idea');
 
-        function setup() {
-            createCanvas(windowWidth, windowHeight);
-            // أضفنا روابط المقالات هنا (link)
-            nodes.push(new IdeaNode("الإيمان", "تمرد الواعي على عبثية المشهد المطلق.", 0.5, 0.5, "faith-test.html"));
-            nodes.push(new IdeaNode("الخذلان", "المقصلة التي تعيد تعريف حدود الروح.", 0.65, 0.35, "essays.html"));
-            nodes.push(new IdeaNode("صنعاء", "ذاكرة الطين التي لا تجف.", 0.4, 0.7, "dictionary.html"));
-            nodes.push(new IdeaNode("الشك", "الممر الضيق نحو يقين لا ينكسر.", 0.35, 0.3, "margins.html"));
+        document.addEventListener('mousemove', (e) => {
+            // تحريك الكشاف مع الماوس
+            flashlight.style.left = e.clientX + 'px';
+            flashlight.style.top = e.clientY + 'px';
 
-            for (let i = 0; i < 600; i++) particles.push(new Particle());
-        }
+            // فحص المسافة بين الماوس وكل فكرة
+            ideas.forEach(idea => {
+                const rect = idea.getBoundingClientRect();
+                const ideaX = rect.left + rect.width / 2;
+                const ideaY = rect.top + rect.height / 2;
+                
+                const distance = Math.sqrt(Math.pow(e.clientX - ideaX, 2) + Math.pow(e.clientY - ideaY, 2));
 
-        function draw() {
-            background(0, 0, 0, isTransitioning ? 100 : 50);
-
-            for (let p of particles) {
-                if (isTransitioning) p.attractToCenter(); 
-                p.update();
-                p.display();
-            }
-
-            let hoveredAny = false;
-            for (let n of nodes) {
-                n.update();
-                n.display();
-                if (n.isHovered() && !isTransitioning) {
-                    showInfo(n.title, n.desc);
-                    cursor(HAND);
-                    hoveredAny = true;
+                if (distance < 150) {
+                    idea.classList.add('visible');
+                } else {
+                    idea.classList.remove('visible');
                 }
-            }
-            if (!hoveredAny) { hideInfo(); cursor(ARROW); }
-        }
-
-        function mousePressed() {
-            for (let n of nodes) {
-                if (n.isHovered()) {
-                    openWormhole(n.link);
-                }
-            }
-        }
-
-        function openWormhole(link) {
-            isTransitioning = true;
-            targetLink = link;
-            document.getElementById('wormhole-overlay').style.opacity = '1';
-            setTimeout(() => { window.location.href = targetLink; }, 1500);
-        }
-
-        class IdeaNode {
-            constructor(title, desc, xPct, yPct, link) {
-                this.title = title; this.desc = desc; this.link = link;
-                this.x = width * xPct; this.y = height * yPct;
-                this.baseX = this.x; this.baseY = this.y;
-            }
-            update() {
-                this.x = this.baseX + sin(frameCount * 0.02) * 10;
-                this.y = this.baseY + cos(frameCount * 0.02) * 10;
-            }
-            display() {
-                noStroke();
-                fill(166, 124, 82, 50);
-                ellipse(this.x, this.y, 30 + sin(frameCount*0.1)*5);
-                fill(212, 175, 55);
-                ellipse(this.x, this.y, 8);
-                fill(255);
-                textSize(12);
-                text(this.title, this.x, this.y - 20);
-            }
-            isHovered() { return dist(mouseX, mouseY, this.x, this.y) < 30; }
-        }
-
-        class Particle {
-            constructor() { this.reset(); }
-            reset() {
-                this.pos = createVector(random(width), random(height));
-                this.vel = createVector(random(-0.5, 0.5), random(-0.5, 0.5));
-                this.acc = createVector(0, 0);
-                this.maxSpeed = 2;
-            }
-            update() {
-                this.vel.add(this.acc);
-                this.pos.add(this.vel);
-                this.acc.mult(0);
-                if (this.pos.x < 0 || this.pos.x > width || this.pos.y < 0 || this.pos.y > height) this.reset();
-            }
-            attractToCenter() {
-                let center = createVector(width/2, height/2);
-                let force = p5.Vector.sub(center, this.pos);
-                force.setMag(0.5);
-                this.acc.add(force);
-                this.maxSpeed = 15;
-                this.vel.limit(this.maxSpeed);
-            }
-            display() {
-                noStroke();
-                fill(212, 175, 55, 150);
-                ellipse(this.pos.x, this.pos.y, 1.5);
-            }
-        }
-
-        function showInfo(t, d) {
-            document.getElementById('title').innerText = t;
-            document.getElementById('desc').innerText = d;
-            document.getElementById('info').classList.add('active-info');
-        }
-        function hideInfo() { document.getElementById('info').classList.remove('active-info'); }
+            });
+        });
     </script>
 </body>
 </html>
