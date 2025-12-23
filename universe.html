@@ -3,77 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23 | كوكبة الأفكار</title>
+    <title>23 | كوكبة الأفكار المطورة</title>
     <style>
-        body { margin: 0; background: #050505; color: #fff; font-family: 'Amiri', serif; overflow: hidden; }
-        canvas { display: block; }
-        .info-box { position: fixed; bottom: 30px; right: 30px; max-width: 300px; background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid #A67C52; border-radius: 10px; backdrop-filter: blur(10px); pointer-events: none; opacity: 0; transition: 0.5s; z-index: 1000; }
-        .active-info { opacity: 1; pointer-events: all; }
-        .back-btn { position: fixed; top: 20px; left: 20px; color: #A67C52; text-decoration: none; border: 1px solid #A67C52; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; z-index: 1001; }
+        body { margin: 0; background: #020202; color: #fff; font-family: 'Amiri', serif; overflow: hidden; }
+        .info-box { position: fixed; bottom: 40px; right: 40px; max-width: 320px; background: rgba(10,10,10,0.8); padding: 25px; border-left: 3px solid #A67C52; border-radius: 5px; backdrop-filter: blur(15px); pointer-events: none; opacity: 0; transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; }
+        .active-info { opacity: 1; transform: translateX(-10px); }
+        .back-btn { position: fixed; top: 25px; left: 25px; color: #A67C52; text-decoration: none; border: 1px solid rgba(166,124,82,0.4); padding: 8px 20px; border-radius: 30px; font-size: 0.8rem; z-index: 1001; transition: 0.3s; }
+        .back-btn:hover { background: #A67C52; color: #fff; }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-btn">← العودة للجوهر</a>
     <div class="info-box" id="info">
-        <h2 id="title" style="color: #A67C52; margin: 0;"></h2>
-        <p id="desc" style="font-size: 0.9rem; opacity: 0.8; line-height: 1.6;"></p>
+        <h2 id="title" style="color: #A67C52; margin: 0; font-size: 1.8rem;"></h2>
+        <p id="desc" style="font-size: 1rem; opacity: 0.8; line-height: 1.8; margin-top: 15px;"></p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
         let nodes = [];
+        const numNodes = 8; // زدت عدد الأفكار
+
         function setup() {
             createCanvas(windowWidth, windowHeight);
-            nodes.push(new Node(windowWidth*0.5, windowHeight*0.5, "الإيمان", "مركز الثقل في فلسفة 23. الإيمان ليس طمأنينة، بل هو تمرد على القبح."));
-            nodes.push(new Node(windowWidth*0.6, windowHeight*0.3, "الخذلان", "المحرك الأول للاكتشاف. عندما تسقط الأقنعة يبدأ البحث عن الحقيقة."));
-            nodes.push(new Node(windowWidth*0.4, windowHeight*0.7, "صنعاء", "الجغرافيا الحزينة والملهمة. المدينة التي تسكننا أكثر مما نسكنها."));
-            nodes.push(new Node(windowWidth*0.3, windowHeight*0.4, "الغربة", "ليست مسافة، بل هي ضياع اللغة المشتركة مع الآخرين."));
+            // إضافة مفاهيم أعمق وأكثر تعقيداً
+            nodes.push(new Node("الإيمان", "تمرد الواعي على عبثية المشهد.", 0.5, 0.5));
+            nodes.push(new Node("الخذلان", "المقصلة التي تنهي طفولة الروح.", 0.6, 0.3));
+            nodes.push(new Node("صنعاء", "ذاكرة الطين والدموع المستعصية.", 0.4, 0.7));
+            nodes.push(new Node("العدم", "المساحة التي يبدأ منها كل شيء.", 0.2, 0.4));
+            nodes.push(new Node("الشك", "بوصلة العبور نحو يقينٍ لا يشيخ.", 0.7, 0.6));
+            nodes.push(new Node("الغربة", "أن تصرخ بلغة قلبك في زحام الصم.", 0.8, 0.2));
+            nodes.push(new Node("الانتظار", "انتحار بطيء بجرعاتٍ من الأمل.", 0.3, 0.2));
+            nodes.push(new Node("الحقيقة", "مرآة مهشمة يظن الجميع امتلاكها.", 0.5, 0.8));
         }
 
         function draw() {
-            background(5, 5, 5);
-            stroke(166, 124, 82, 50);
+            background(2, 2, 2, 40); // تأثير التلاشي للحركة
+
+            // رسم خيوط العنكبوت الفكرية
             for(let i=0; i<nodes.length; i++) {
                 for(let j=i+1; j<nodes.length; j++) {
-                    line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+                    let d = dist(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+                    if (d < 300) {
+                        stroke(166, 124, 82, map(d, 0, 300, 100, 0));
+                        strokeWeight(map(d, 0, 300, 2, 0.1));
+                        line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+                    }
+                }
+                
+                // جذب النقاط نحو الماوس (جاذبية الوعي)
+                let dMouse = dist(mouseX, mouseY, nodes[i].x, nodes[i].y);
+                if (dMouse < 200) {
+                    stroke(212, 175, 55, 50);
+                    line(mouseX, mouseY, nodes[i].x, nodes[i].y);
                 }
             }
+
             let hoveredAny = false;
             for(let n of nodes) {
                 n.update();
                 n.display();
                 if(n.isHovered()) {
-                    document.getElementById('info').classList.add('active-info');
-                    document.getElementById('title').innerText = n.title;
-                    document.getElementById('desc').innerText = n.desc;
+                    showInfo(n.title, n.desc);
                     hoveredAny = true;
                 }
             }
-            if(!hoveredAny) document.getElementById('info').classList.remove('active-info');
+            if(!hoveredAny) hideInfo();
         }
 
         class Node {
-            constructor(x, y, title, desc) {
-                this.x = x; this.y = y; this.title = title; this.desc = desc;
-                this.size = 15;
-                this.angle = random(TWO_PI);
+            constructor(title, desc, xPct, yPct) {
+                this.title = title; this.desc = desc;
+                this.x = width * xPct; this.y = height * yPct;
+                this.baseX = this.x; this.baseY = this.y;
+                this.velX = random(-0.5, 0.5); this.velY = random(-0.5, 0.5);
+                this.size = 12;
             }
             update() {
-                this.x += cos(this.angle) * 0.3;
-                this.y += sin(this.angle) * 0.3;
-                if(this.x < 0 || this.x > width) this.angle = PI - this.angle;
-                if(this.y < 0 || this.y > height) this.angle = -this.angle;
+                this.x += this.velX; this.y += this.velY;
+                // ارتداد من الحواف
+                if(this.x < 50 || this.x > width-50) this.velX *= -1;
+                if(this.y < 50 || this.y > height-50) this.velY *= -1;
+                
+                // تفاعل مع الماوس
+                let d = dist(mouseX, mouseY, this.x, this.y);
+                if (d < 150) {
+                    this.x = lerp(this.x, mouseX, 0.02);
+                    this.y = lerp(this.y, mouseY, 0.02);
+                    this.size = 18;
+                } else {
+                    this.size = lerp(this.size, 12, 0.1);
+                }
             }
             display() {
-                fill(166, 124, 82);
                 noStroke();
+                fill(166, 124, 82);
                 ellipse(this.x, this.y, this.size);
-                textAlign(CENTER);
+                fill(255, 150);
                 textSize(14);
-                text(this.title, this.x, this.y + 25);
+                textAlign(CENTER);
+                text(this.title, this.x, this.y + 30);
             }
-            isHovered() { return dist(mouseX, mouseY, this.x, this.y) < 25; }
+            isHovered() { return dist(mouseX, mouseY, this.x, this.y) < 30; }
         }
+
+        function showInfo(t, d) {
+            const box = document.getElementById('info');
+            document.getElementById('title').innerText = t;
+            document.getElementById('desc').innerText = d;
+            box.classList.add('active-info');
+        }
+        function hideInfo() { document.getElementById('info').classList.remove('active-info'); }
         function windowResized() { resizeCanvas(windowWidth, windowHeight); }
     </script>
 </body>
