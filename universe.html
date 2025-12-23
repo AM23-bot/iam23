@@ -3,108 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23 | كوكبة الأفكار المطورة</title>
+    <title>23 | كوكبة البرو ماكس</title>
     <style>
-        body { margin: 0; background: #020202; color: #fff; font-family: 'Amiri', serif; overflow: hidden; }
-        .info-box { position: fixed; bottom: 40px; right: 40px; max-width: 320px; background: rgba(10,10,10,0.8); padding: 25px; border-left: 3px solid #A67C52; border-radius: 5px; backdrop-filter: blur(15px); pointer-events: none; opacity: 0; transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; }
-        .active-info { opacity: 1; transform: translateX(-10px); }
-        .back-btn { position: fixed; top: 25px; left: 25px; color: #A67C52; text-decoration: none; border: 1px solid rgba(166,124,82,0.4); padding: 8px 20px; border-radius: 30px; font-size: 0.8rem; z-index: 1001; transition: 0.3s; }
-        .back-btn:hover { background: #A67C52; color: #fff; }
+        body { margin: 0; background: #000; color: #fff; font-family: 'Amiri', serif; overflow: hidden; }
+        /* تصميم صندوق المعلومات كما في الصورة */
+        .info-box { 
+            position: fixed; bottom: 50px; right: 50px; width: 320px; 
+            background: rgba(15, 15, 15, 0.9); padding: 25px; 
+            border: 1px solid rgba(166, 124, 82, 0.5); border-radius: 15px; 
+            backdrop-filter: blur(20px); pointer-events: none; opacity: 0; 
+            transition: 0.6s all cubic-bezier(0.23, 1, 0.32, 1); z-index: 1000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .active-info { opacity: 1; transform: translateY(-20px); }
+        .info-box h2 { color: #A67C52; margin: 0 0 10px 0; font-size: 1.6rem; border-bottom: 1px solid rgba(166,124,82,0.2); padding-bottom: 10px; }
+        .info-box p { font-size: 1rem; line-height: 1.7; color: #ccc; margin: 15px 0 0 0; }
+        
+        .back-btn { 
+            position: fixed; top: 30px; left: 30px; color: #A67C52; 
+            text-decoration: none; border: 1px solid #A67C52; padding: 10px 25px; 
+            border-radius: 50px; font-size: 0.8rem; z-index: 1001; transition: 0.4s;
+            background: rgba(0,0,0,0.5);
+        }
+        .back-btn:hover { background: #A67C52; color: #fff; box-shadow: 0 0 20px rgba(166,124,82,0.4); }
     </style>
 </head>
 <body>
+
     <a href="index.html" class="back-btn">← العودة للجوهر</a>
+
     <div class="info-box" id="info">
-        <h2 id="title" style="color: #A67C52; margin: 0; font-size: 1.8rem;"></h2>
-        <p id="desc" style="font-size: 1rem; opacity: 0.8; line-height: 1.8; margin-top: 15px;"></p>
+        <h2 id="title"></h2>
+        <p id="desc"></p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
+        let particles = [];
         let nodes = [];
-        const numNodes = 8; // زدت عدد الأفكار
+        const PARTICLE_COUNT = 800; // عدد الجزيئات المحيطة
 
         function setup() {
             createCanvas(windowWidth, windowHeight);
-            // إضافة مفاهيم أعمق وأكثر تعقيداً
-            nodes.push(new Node("الإيمان", "تمرد الواعي على عبثية المشهد.", 0.5, 0.5));
-            nodes.push(new Node("الخذلان", "المقصلة التي تنهي طفولة الروح.", 0.6, 0.3));
-            nodes.push(new Node("صنعاء", "ذاكرة الطين والدموع المستعصية.", 0.4, 0.7));
-            nodes.push(new Node("العدم", "المساحة التي يبدأ منها كل شيء.", 0.2, 0.4));
-            nodes.push(new Node("الشك", "بوصلة العبور نحو يقينٍ لا يشيخ.", 0.7, 0.6));
-            nodes.push(new Node("الغربة", "أن تصرخ بلغة قلبك في زحام الصم.", 0.8, 0.2));
-            nodes.push(new Node("الانتظار", "انتحار بطيء بجرعاتٍ من الأمل.", 0.3, 0.2));
-            nodes.push(new Node("الحقيقة", "مرآة مهشمة يظن الجميع امتلاكها.", 0.5, 0.8));
+            
+            // تعريف العقد الأساسية (الأفكار)
+            nodes.push(new IdeaNode("الإيمان", "تمرد الواعي على عبثية المشهد المطلق.", 0.5, 0.5));
+            nodes.push(new IdeaNode("الخذلان", "المقصلة التي تعيد تعريف حدود الروح.", 0.65, 0.35));
+            nodes.push(new IdeaNode("صنعاء", "ذاكرة الطين التي لا تجف، ووجع الغبار الجميل.", 0.4, 0.7));
+            nodes.push(new IdeaNode("الشك", "الممر الضيق نحو يقين لا ينكسر.", 0.35, 0.3));
+            nodes.push(new IdeaNode("الغربة", "أن تسكن وطناً لا يشبه ملامح قلبك.", 0.75, 0.65));
+            nodes.push(new IdeaNode("العدم", "البداية التي تسبق كل ولادة فكرية.", 0.25, 0.55));
+
+            // إنشاء الجزيئات (السديم)
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push(new Particle());
+            }
         }
 
         function draw() {
-            background(2, 2, 2, 40); // تأثير التلاشي للحركة
+            background(0, 0, 0, 50); // ذيل حركي خفيف
 
-            // رسم خيوط العنكبوت الفكرية
-            for(let i=0; i<nodes.length; i++) {
-                for(let j=i+1; j<nodes.length; j++) {
+            // رسم الجزيئات وتحديثها
+            for (let p of particles) {
+                p.update();
+                p.display();
+            }
+
+            // رسم الخطوط الرفيعة جداً بين الأفكار القريبة
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
                     let d = dist(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-                    if (d < 300) {
-                        stroke(166, 124, 82, map(d, 0, 300, 100, 0));
-                        strokeWeight(map(d, 0, 300, 2, 0.1));
+                    if (d < 350) {
+                        stroke(166, 124, 82, map(d, 0, 350, 40, 0));
+                        strokeWeight(0.5);
                         line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
                     }
                 }
-                
-                // جذب النقاط نحو الماوس (جاذبية الوعي)
-                let dMouse = dist(mouseX, mouseY, nodes[i].x, nodes[i].y);
-                if (dMouse < 200) {
-                    stroke(212, 175, 55, 50);
-                    line(mouseX, mouseY, nodes[i].x, nodes[i].y);
-                }
             }
 
+            // تحديث ورسم العقد
             let hoveredAny = false;
-            for(let n of nodes) {
+            for (let n of nodes) {
                 n.update();
                 n.display();
-                if(n.isHovered()) {
+                if (n.isHovered()) {
                     showInfo(n.title, n.desc);
                     hoveredAny = true;
                 }
             }
-            if(!hoveredAny) hideInfo();
+            if (!hoveredAny) hideInfo();
         }
 
-        class Node {
+        class IdeaNode {
             constructor(title, desc, xPct, yPct) {
                 this.title = title; this.desc = desc;
                 this.x = width * xPct; this.y = height * yPct;
-                this.baseX = this.x; this.baseY = this.y;
-                this.velX = random(-0.5, 0.5); this.velY = random(-0.5, 0.5);
-                this.size = 12;
+                this.targetX = this.x; this.targetY = this.y;
+                this.angle = random(TWO_PI);
             }
             update() {
-                this.x += this.velX; this.y += this.velY;
-                // ارتداد من الحواف
-                if(this.x < 50 || this.x > width-50) this.velX *= -1;
-                if(this.y < 50 || this.y > height-50) this.velY *= -1;
+                // حركة عائمة بطيئة
+                this.x = this.targetX + Math.sin(frameCount * 0.02 + this.angle) * 10;
+                this.y = this.targetY + Math.cos(frameCount * 0.02 + this.angle) * 10;
                 
                 // تفاعل مع الماوس
                 let d = dist(mouseX, mouseY, this.x, this.y);
+                if (d < 200) {
+                    this.x = lerp(this.x, mouseX, 0.05);
+                    this.y = lerp(this.y, mouseY, 0.05);
+                }
+            }
+            display() {
+                // رسم هالة حول النقطة
+                noStroke();
+                fill(166, 124, 82, 30);
+                ellipse(this.x, this.y, 40 + Math.sin(frameCount * 0.1) * 10);
+                fill(166, 124, 82);
+                ellipse(this.x, this.y, 10);
+                
+                // كتابة النص فوق النقطة بخلفية صغيرة
+                fill(255);
+                textAlign(CENTER);
+                textSize(12);
+                text(this.title.toUpperCase(), this.x, this.y - 20);
+            }
+            isHovered() { return dist(mouseX, mouseY, this.x, this.y) < 30; }
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = random(width); this.y = random(height);
+                this.vx = random(-0.5, 0.5); this.vy = random(-0.5, 0.5);
+                this.alpha = random(10, 150);
+                this.size = random(0.5, 2);
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+                
+                // الانجذاب للماوس
+                let d = dist(mouseX, mouseY, this.x, this.y);
                 if (d < 150) {
-                    this.x = lerp(this.x, mouseX, 0.02);
-                    this.y = lerp(this.y, mouseY, 0.02);
-                    this.size = 18;
-                } else {
-                    this.size = lerp(this.size, 12, 0.1);
+                    this.x = lerp(this.x, mouseX, 0.01);
+                    this.y = lerp(this.y, mouseY, 0.01);
                 }
             }
             display() {
                 noStroke();
-                fill(166, 124, 82);
+                fill(212, 175, 55, this.alpha);
                 ellipse(this.x, this.y, this.size);
-                fill(255, 150);
-                textSize(14);
-                textAlign(CENTER);
-                text(this.title, this.x, this.y + 30);
             }
-            isHovered() { return dist(mouseX, mouseY, this.x, this.y) < 30; }
         }
 
         function showInfo(t, d) {
