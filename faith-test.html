@@ -6,108 +6,76 @@
     <title>23 | الإيمان والخذلان</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #F4F1EA; --primary: #1A1A1B; --accent: #A67C52; --nav-bg: rgba(244, 241, 234, 0.9); }
-        [data-theme="dark"] { --bg: #121212; --primary: #E0E0E0; --accent: #D4AF37; --nav-bg: rgba(18, 18, 18, 0.9); }
+        :root { --bg: #F4F1EA; --primary: #1A1A1B; --accent: #A67C52; }
+        [data-theme="dark"] { --bg: #0A0A0A; --primary: #E0E0E0; --accent: #D4AF37; }
 
-        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; line-height: 2.2; transition: 0.5s; }
+        body { margin: 0; background-color: var(--bg); color: var(--primary); font-family: 'IBM Plex Sans Arabic', sans-serif; line-height: 2.2; transition: 1s; }
         
-        /* شريط التقدم العلوي */
-        .progress-container { position: fixed; top: 0; z-index: 2000; width: 100%; height: 4px; background: rgba(0,0,0,0.05); }
-        .progress-bar { height: 4px; background: var(--accent); width: 0%; transition: 0.1s; }
+        header { padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166,124,82,0.1); }
+        .logo { font-family: 'Amiri', serif; font-size: 1.5rem; text-decoration: none; color: var(--primary); font-weight: bold; }
 
-        /* الهيدر العلوي */
-        header.nav-header { position: sticky; top: 0; background: var(--nav-bg); backdrop-filter: blur(10px); padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(166,124,82,0.1); transition: 0.5s; }
-        .nav-header a { text-decoration: none; color: var(--accent); font-weight: bold; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; }
+        /* نمط العزلة الجذري */
+        .zen-mode header, .zen-mode footer, .zen-mode #zenBtn, .zen-mode .meta { opacity: 0; pointer-events: none; }
+        .zen-mode body { background-color: #000000 !important; color: #777 !important; }
+        .zen-mode article { transform: translateY(50px); }
 
-        /* نمط العزلة (Zen Mode) */
-        .zen-mode header, .zen-mode .meta, .zen-mode #zenBtn { display: none !important; }
-        .zen-mode article { margin-top: 15vh; }
-        .zen-mode body { background-color: #0f0f0f !important; color: #888 !important; }
-
-        article { max-width: 750px; margin: 4rem auto 10rem auto; padding: 0 25px; transition: 0.5s; }
-        header h1 { font-family: 'Amiri', serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.2; text-align: center; margin-bottom: 1rem; }
-        .meta { text-align: center; font-size: 0.8rem; opacity: 0.5; margin-bottom: 2rem; letter-spacing: 2px; }
+        article { max-width: 700px; margin: 4rem auto; padding: 0 25px; transition: 1s ease-in-out; }
+        h1 { font-family: 'Amiri', serif; font-size: 3rem; text-align: center; }
+        .meta { text-align: center; opacity: 0.5; margin-bottom: 2rem; }
         
-        #zenBtn { cursor: pointer; text-align: center; opacity: 0.5; font-size: 0.8rem; margin-bottom: 4rem; color: var(--accent); font-weight: bold; }
-        #zenBtn:hover { opacity: 1; }
+        #zenBtn { cursor: pointer; text-align: center; color: var(--accent); font-weight: bold; margin-bottom: 3rem; text-decoration: underline; }
 
-        .text-body { font-size: 1.35rem; text-align: justify; font-weight: 300; }
-        .quote { font-family: 'Amiri', serif; font-style: italic; font-size: 1.8rem; color: var(--accent); border-right: 4px solid var(--accent); padding-right: 1.5rem; margin: 4rem 0; opacity: 0; transform: translateY(20px); transition: 1s; }
+        .text-body { font-size: 1.3rem; text-align: justify; }
+        .quote { font-family: 'Amiri', serif; font-size: 1.8rem; color: var(--accent); border-right: 4px solid var(--accent); padding-right: 1.5rem; margin: 3rem 0; }
         
-        h3 { font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--accent); margin-top: 5rem; opacity: 0; transform: translateY(20px); transition: 1s; }
-        p { margin-bottom: 2.5rem; opacity: 0; transform: translateY(20px); transition: 1s; }
-        .visible { opacity: 1 !important; transform: translateY(0) !important; }
-
-        .no-select { user-select: none; -webkit-user-select: none; }
+        /* شريط التقدم */
+        .progress-bar { position: fixed; top: 0; right: 0; height: 3px; background: var(--accent); width: 0%; z-index: 2000; }
     </style>
 </head>
-<body class="no-select">
+<body>
+    <audio id="rainAudio" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"> </audio>
 
-    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+    <div class="progress-bar" id="pBar"></div>
 
-    <header class="nav-header">
-        <a href="essays.html">← الفهرس</a>
-        <div onclick="toggleTheme()" style="cursor:pointer; font-size:0.8rem; opacity:0.6;">تبديل الإضاءة</div>
-        <span style="font-family: 'Amiri'; font-weight: bold; font-size: 1.5rem;">23</span>
+    <header>
+        <a href="index.html" class="logo">23</a>
+        <a href="essays.html" style="text-decoration:none; color:var(--accent)">الفهرس</a>
     </header>
 
     <article>
-        <header>
-            <h1>الإيمان حين يُختبر بالخذلان</h1>
-            <div class="meta">ديسمبر 2025 • بواسطة 23</div>
-            <div id="zenBtn" onclick="toggleZen()">[ تفعيل نمط العزلة ]</div>
-        </header>
+        <h1>الإيمان حين يُختبر بالخذلان</h1>
+        <div class="meta">بواسطة 23 • ديسمبر 2025</div>
+        <div id="zenBtn" onclick="toggleZen()">[ دخول في حالة عزلة فكرية ]</div>
 
         <div class="text-body">
-            <div class="quote">"كيف نؤمن في بلدٍ يرى فيه الإنسانُ الظلمَ يومياً كطيفٍ لا يغادرُ الزوايا؟"</div>
-            
-            <p>في هذه الجغرافيا التي أثقلتها السنين، لم يعد السؤال عن "ما هو الإيمان" ترفاً فكرياً، بل أصبح ضرورة للبقاء. إن الإيمان وسط الركام ليس طمأنينة باردة، بل هو أرقى أشكال المقاومة الصامتة.</p>
-
-            <h3>1. ولادة اليقين من رحم الانكسار</h3>
-            <p>هل يولد الإيمان قبل الانكسار أم بعده؟ الحقيقة أن الإيمان الحقيقي، هو ذلك الذي ينبثق حين تتحطم كل الأوهام الأرضية، حين يُترك الإنسان وحيداً مع خذلانه ليعيد اكتشاف الله في الداخل.</p>
-
-            <h3>2. الإيمان كفعل تمرد</h3>
-            <p>أن ترفض أن تصبح ظالماً وأنت ترى الظلم يحيط بك، أن ترفض القبح وأنت تسكنه، هذا هو الإيمان. إنه ليس هروباً من الواقع، بل هو "تعالٍ" عليه.</p>
-
-            <p style="text-align: center; margin-top: 5rem; font-style: italic; color: var(--accent); opacity:1; transform:none;">انتهى المتن - اضغط Esc للخروج من العزلة</p>
+            <div class="quote">"الخذلان ليس نهاية الطريق، بل هو لحظة اكتشاف أنك كنت تمشي في الطريق الخطأ."</div>
+            <p>النص هنا ينساب بهدوء... عند دخولك نمط العزلة ستختفي كل المشتتات ويبدأ الصدى الصوتي في احتواء المكان.</p>
+            <p>الإيمان هو تلك الشمعة التي ترفض الانطفاء مهما بلغت شدة الريح...</p>
         </div>
     </article>
 
     <script>
-        // تبديل الوضع الليلي
-        function toggleTheme() {
-            const current = document.documentElement.getAttribute("data-theme");
-            const target = current === "dark" ? "light" : "dark";
-            document.documentElement.setAttribute("data-theme", target);
-            localStorage.setItem("theme", target);
-        }
-        document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "light");
-
-        // تبديل نمط العزلة
         function toggleZen() {
-            document.body.classList.toggle('zen-mode');
+            const body = document.body;
+            const audio = document.getElementById('rainAudio');
+            body.classList.toggle('zen-mode');
+            
+            if (body.classList.contains('zen-mode')) {
+                audio.play();
+                audio.volume = 0.2; // صوت خافت جداً
+            } else {
+                audio.pause();
+            }
         }
 
-        // الخروج من العزلة بمفتاح Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") document.body.classList.remove('zen-mode');
-        });
-
-        // شريط التقدم وظهور الفقرات
         window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let winScroll = document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("myBar").style.width = scrolled + "%";
-            
-            let elements = document.querySelectorAll('.text-body p, .text-body h3, .text-body .quote');
-            elements.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 50) {
-                    el.classList.add('visible');
-                }
-            });
+            document.getElementById("pBar").style.width = (winScroll / height) * 100 + "%";
         };
-        window.onload = () => window.dispatchEvent(new Event('scroll'));
+        
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "light");
     </script>
 </body>
 </html>
