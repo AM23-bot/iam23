@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23 | كوكبة الأفكار</title>
+    <style>
+        body { margin: 0; background: #050505; color: #fff; font-family: 'Amiri', serif; overflow: hidden; }
+        canvas { display: block; }
+        .info-box { position: fixed; bottom: 30px; right: 30px; max-width: 300px; background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid #A67C52; border-radius: 10px; backdrop-filter: blur(10px); pointer-events: none; opacity: 0; transition: 0.5s; }
+        .active-info { opacity: 1; pointer-events: all; }
+        .back-btn { position: fixed; top: 20px; left: 20px; color: #A67C52; text-decoration: none; border: 1px solid #A67C52; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← العودة للجوهر</a>
+
+    <div class="info-box" id="info">
+        <h2 id="title" style="color: #A67C52; margin: 0;"></h2>
+        <p id="desc" style="font-size: 0.9rem; opacity: 0.8; line-height: 1.6;"></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script>
+        let nodes = [];
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            // إنشاء عقد (أفكار)
+            nodes.push(new Node(windowWidth*0.5, windowHeight*0.5, "الإيمان", "مركز الثقل في فلسفة 23. الإيمان ليس طمأنينة، بل هو تمرد على القبح."));
+            nodes.push(new Node(windowWidth*0.6, windowHeight*0.3, "الخذلان", "المحرك الأول للاكتشاف. عندما تسقط الأقنعة يبدأ البحث عن الحقيقة."));
+            nodes.push(new Node(windowWidth*0.4, windowHeight*0.7, "صنعاء", "الجغرافيا الحزينة والملهمة. المدينة التي تسكننا أكثر مما نسكنها."));
+            nodes.push(new Node(windowWidth*0.3, windowHeight*0.4, "الغربة", "ليست مسافة، بل هي ضياع اللغة المشتركة مع الآخرين."));
+        }
+
+        function draw() {
+            background(5, 5, 5);
+            
+            // رسم الخطوط بين العقد
+            stroke(166, 124, 82, 50);
+            for(let i=0; i<nodes.length; i++) {
+                for(let j=i+1; j<nodes.length; j++) {
+                    line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+                }
+            }
+
+            for(let n of nodes) {
+                n.update();
+                n.display();
+                if(n.isHovered()) {
+                    document.getElementById('info').classList.add('active-info');
+                    document.getElementById('title').innerText = n.title;
+                    document.getElementById('desc').innerText = n.desc;
+                }
+            }
+        }
+
+        class Node {
+            constructor(x, y, title, desc) {
+                this.x = x; this.y = y; this.title = title; this.desc = desc;
+                this.size = 15;
+                this.angle = random(TWO_PI);
+            }
+            update() {
+                this.x += cos(this.angle) * 0.2;
+                this.y += sin(this.angle) * 0.2;
+            }
+            display() {
+                fill(166, 124, 82);
+                noStroke();
+                ellipse(this.x, this.y, this.size);
+                textAlign(CENTER);
+                text(this.title, this.x, this.y + 25);
+            }
+            isHovered() {
+                return dist(mouseX, mouseY, this.x, this.y) < 20;
+            }
+        }
+    </script>
+</body>
+</html>
